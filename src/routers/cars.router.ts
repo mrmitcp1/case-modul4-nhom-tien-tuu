@@ -21,5 +21,6 @@ carRouter.post(
   CarController.createCar
 );
 carRouter.get("/cars/list", CarController.showAllCar);
+carRouter.get("/cars/detail/:id", CarController.carDetail);
 
 export default carRouter;

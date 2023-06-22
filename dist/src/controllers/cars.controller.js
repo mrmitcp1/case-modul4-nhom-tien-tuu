@@ -6,6 +6,13 @@ class CarController {
         const cars = await car_schema_1.Car.find();
         res.render("carModelView", { data: cars });
     }
+    static async carDetail(req, res) {
+        const carId = req.params.id;
+        const car = await car_schema_1.Car.findOne({ _id: carId }).catch((err) => {
+            console.log(err.message);
+        });
+        res.render("carDetail", { data: car });
+    }
     static async showCreateForm(req, res) {
         res.render("carCreate");
     }
@@ -28,6 +35,7 @@ class CarController {
                 car_availability: req.body.availability,
                 car_img: images,
                 car_seat: req.body.seat,
+                car_des: req.body.des,
             };
             const car = new car_schema_1.Car(data);
             await car.save();

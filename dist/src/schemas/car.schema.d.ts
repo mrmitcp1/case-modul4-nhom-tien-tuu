@@ -35,6 +35,7 @@ export declare const Car: import("mongoose").Model<{
     car_rentalPrice?: number;
     car_availability?: string;
     car_seat?: number;
+    car_des?: string;
     pickup?: import("mongoose").Types.ObjectId;
     drop?: import("mongoose").Types.ObjectId;
 }, {}, {}, {}, import("mongoose").Document<unknown, {}, {
@@ -49,6 +50,7 @@ export declare const Car: import("mongoose").Model<{
     car_rentalPrice?: number;
     car_availability?: string;
     car_seat?: number;
+    car_des?: string;
     pickup?: import("mongoose").Types.ObjectId;
     drop?: import("mongoose").Types.ObjectId;
 }> & Omit<{
@@ -63,6 +65,7 @@ export declare const Car: import("mongoose").Model<{
     car_rentalPrice?: number;
     car_availability?: string;
     car_seat?: number;
+    car_des?: string;
     pickup?: import("mongoose").Types.ObjectId;
     drop?: import("mongoose").Types.ObjectId;
 } & {
@@ -79,6 +82,7 @@ export declare const Car: import("mongoose").Model<{
     car_rentalPrice?: number;
     car_availability?: string;
     car_seat?: number;
+    car_des?: string;
     pickup?: import("mongoose").Types.ObjectId;
     drop?: import("mongoose").Types.ObjectId;
 }, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<{
@@ -93,6 +97,7 @@ export declare const Car: import("mongoose").Model<{
     car_rentalPrice?: number;
     car_availability?: string;
     car_seat?: number;
+    car_des?: string;
     pickup?: import("mongoose").Types.ObjectId;
     drop?: import("mongoose").Types.ObjectId;
 }>> & Omit<import("mongoose").FlatRecord<{
@@ -107,6 +112,7 @@ export declare const Car: import("mongoose").Model<{
     car_rentalPrice?: number;
     car_availability?: string;
     car_seat?: number;
+    car_des?: string;
     pickup?: import("mongoose").Types.ObjectId;
     drop?: import("mongoose").Types.ObjectId;
 }> & {

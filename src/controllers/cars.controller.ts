@@ -1,10 +1,17 @@
 import { Car } from "../schemas/car.schema";
-import multer from "multer";
 
 class CarController {
   static async showAllCar(req: any, res: any) {
     const cars = await Car.find();
     res.render("carModelView", { data: cars });
+  }
+
+  static async carDetail(req: any, res: any) {
+    const carId = req.params.id;
+    const car = await Car.findOne({ _id: carId }).catch((err) => {
+      console.log(err.message);
+    });
+    res.render("carDetail", { data: car });
   }
 
   static async showCreateForm(req: any, res: any) {
@@ -30,6 +37,7 @@ class CarController {
         car_availability: req.body.availability,
         car_img: images,
         car_seat: req.body.seat,
+        car_des: req.body.des,
       };
       const car = new Car(data);
       await car.save();
