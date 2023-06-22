@@ -1,1 +1,0 @@
-{"version":3,"file":"rental.schema.js","sourceRoot":"","sources":["../../../src/schemas/rental.schema.ts"],"names":[],"mappings":";;;AAAA,uCAAyC;AACzC,MAAM,YAAY,GAAG,IAAI,iBAAM,CAAC;IAC5B,OAAO,EAAE,EAAE,IAAI,EAAE,iBAAM,CAAC,KAAK,CAAC,QAAQ,EAAE,GAAG,EAAE,MAAM,EAAE;CACxD,CAAC,CAAA;AACW,QAAA,MAAM,GAAG,IAAA,gBAAK,EAAC,SAAS,EAAC,YAAY,CAAC,CAAA"}

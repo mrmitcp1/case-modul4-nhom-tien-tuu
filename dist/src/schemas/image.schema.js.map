@@ -1,1 +1,0 @@
-{"version":3,"file":"image.schema.js","sourceRoot":"","sources":["../../../src/schemas/image.schema.ts"],"names":[],"mappings":";;;AAAA,uCAAyC;AACzC,MAAM,WAAW,GAAG,IAAI,iBAAM,CAAC;IAC3B,MAAM,EAAE,EAAC,IAAI,EAAC,iBAAM,CAAC,KAAK,CAAC,QAAQ,EAAC,GAAG,EAAC,MAAM,EAAC;IAC/C,SAAS,EAAG,MAAM;CACrB,CAAC,CAAA;AACW,QAAA,KAAK,GAAG,IAAA,gBAAK,EAAC,QAAQ,EAAC,WAAW,CAAC,CAAA"}
