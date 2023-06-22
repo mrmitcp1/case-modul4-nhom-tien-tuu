@@ -2,6 +2,11 @@ import { Car } from "../schemas/car.schema";
 import multer from "multer";
 
 class CarController {
+  static async showAllCar(req: any, res: any) {
+    const cars = await Car.find();
+    res.render("carModelView", { data: cars });
+  }
+
   static async showCreateForm(req: any, res: any) {
     res.render("carCreate");
   }
@@ -13,7 +18,6 @@ class CarController {
       carImages.forEach((item) => {
         images.push(item.originalname);
       });
-      console.log(images);
       const data = {
         car_brand: req.body.brand,
         car_model: req.body.model,

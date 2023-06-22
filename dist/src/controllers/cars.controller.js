@@ -2,6 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const car_schema_1 = require("../schemas/car.schema");
 class CarController {
+    static async showAllCar(req, res) {
+        const cars = await car_schema_1.Car.find();
+        res.render("carModelView", { data: cars });
+    }
     static async showCreateForm(req, res) {
         res.render("carCreate");
     }
@@ -12,7 +16,6 @@ class CarController {
             carImages.forEach((item) => {
                 images.push(item.originalname);
             });
-            console.log(images);
             const data = {
                 car_brand: req.body.brand,
                 car_model: req.body.model,

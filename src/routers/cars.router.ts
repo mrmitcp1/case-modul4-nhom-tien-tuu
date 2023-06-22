@@ -20,5 +20,6 @@ carRouter.post(
   upload.array("img", 10),
   CarController.createCar
 );
+carRouter.get("/cars/list", CarController.showAllCar);
 
 export default carRouter;

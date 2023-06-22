@@ -22,6 +22,7 @@ mongoose_1.default
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use(body_parser_1.default.json());
 app.use(express_1.default.static("./public"));
+app.use(express_1.default.static("./assets"));
 app.use((0, express_session_1.default)({
     secret: "keyboard cat",
     resave: false,

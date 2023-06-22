@@ -20,6 +20,7 @@ mongoose
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("./public"));
+app.use(express.static("./assets"));
 app.use(
   session({
     secret: "keyboard cat",
