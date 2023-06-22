@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import session from "express-session";
 import livereload from "connect-livereload";
 import passport from "passport";
+import localRouter from "./src/routers/local.router";
 
 const PORT = 3333;
 const app = express();
@@ -28,6 +29,7 @@ app.use(
 app.use(livereload());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use('/adm',localRouter)
 
 app.listen(PORT, () => {
   console.log("App running on port: " + PORT);

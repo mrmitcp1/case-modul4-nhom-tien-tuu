@@ -5,6 +5,8 @@ const mongoose_1 = require("mongoose");
 const rentalDetailSchema = new mongoose_1.Schema({
     car_id: { type: mongoose_1.Schema.Types.ObjectId, ref: "Cars" },
     user_id: { type: mongoose_1.Schema.Types.ObjectId, ref: "User" },
+    pick_time: Date,
+    drop_time: Date,
     total_cost: Number,
 });
 exports.RentalDetail = (0, mongoose_1.model)("RentaDetails", rentalDetailSchema);

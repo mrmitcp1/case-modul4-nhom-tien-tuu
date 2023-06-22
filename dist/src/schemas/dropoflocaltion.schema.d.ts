@@ -25,24 +25,18 @@
 import { Schema } from "mongoose";
 export declare const DropofLocaltion: import("mongoose").Model<{
     dropofLocaltion_name?: string;
-    drop_time?: Date;
 }, {}, {}, {}, import("mongoose").Document<unknown, {}, {
     dropofLocaltion_name?: string;
-    drop_time?: Date;
 }> & Omit<{
     dropofLocaltion_name?: string;
-    drop_time?: Date;
 } & {
     _id: import("mongoose").Types.ObjectId;
 }, never>, Schema<any, import("mongoose").Model<any, any, any, any, any, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, {
     dropofLocaltion_name?: string;
-    drop_time?: Date;
 }, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<{
     dropofLocaltion_name?: string;
-    drop_time?: Date;
 }>> & Omit<import("mongoose").FlatRecord<{
     dropofLocaltion_name?: string;
-    drop_time?: Date;
 }> & {
     _id: import("mongoose").Types.ObjectId;
 }, never>>>;

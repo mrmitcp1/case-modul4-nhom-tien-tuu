@@ -1,0 +1,22 @@
+<div class="page-heading">
+
+    <h1>Update Local</h1>
+
+</div>
+
+<form action="" method="POST" enctype="multipart/form-data">
+
+    <div class="control-group">
+
+        <div class="form-group floating-label-form-group controls">
+
+            <label>Update Local Here</label>
+            <%if (name === "drop") {%>
+            <input type="text" class="form-control" id="id" name="dropofLocaltion_name" value="<%=local.dropofLocaltion_name%>">
+            <%} else if (name ==='pick') {%>
+            <input type="text" class="form-control" id="id" name="pickupLocaltion_name" value="<%=local.pickupLocaltion_name%>">
+            <%}%>
+        </div>
+    </div>
+    <button type="submit">Submit</button>
+</form>

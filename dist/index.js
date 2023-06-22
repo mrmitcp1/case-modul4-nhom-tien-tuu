@@ -9,6 +9,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const express_session_1 = __importDefault(require("express-session"));
 const connect_livereload_1 = __importDefault(require("connect-livereload"));
 const passport_1 = __importDefault(require("passport"));
+const local_router_1 = __importDefault(require("./src/routers/local.router"));
 const PORT = 3333;
 const app = (0, express_1.default)();
 app.set("view engine", "ejs");
@@ -29,6 +30,7 @@ app.use((0, express_session_1.default)({
 app.use((0, connect_livereload_1.default)());
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
+app.use('/adm', local_router_1.default);
 app.listen(PORT, () => {
     console.log("App running on port: " + PORT);
 });
