@@ -25,30 +25,30 @@
 import { Schema } from "mongoose";
 export declare const Review: import("mongoose").Model<{
     review_comment: string[];
-    car_id?: import("mongoose").Types.ObjectId;
     user_id?: import("mongoose").Types.ObjectId;
+    car_id?: import("mongoose").Types.ObjectId;
 }, {}, {}, {}, import("mongoose").Document<unknown, {}, {
     review_comment: string[];
-    car_id?: import("mongoose").Types.ObjectId;
     user_id?: import("mongoose").Types.ObjectId;
+    car_id?: import("mongoose").Types.ObjectId;
 }> & Omit<{
     review_comment: string[];
-    car_id?: import("mongoose").Types.ObjectId;
     user_id?: import("mongoose").Types.ObjectId;
+    car_id?: import("mongoose").Types.ObjectId;
 } & {
     _id: import("mongoose").Types.ObjectId;
 }, never>, Schema<any, import("mongoose").Model<any, any, any, any, any, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, {
     review_comment: string[];
-    car_id?: import("mongoose").Types.ObjectId;
     user_id?: import("mongoose").Types.ObjectId;
+    car_id?: import("mongoose").Types.ObjectId;
 }, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<{
     review_comment: string[];
-    car_id?: import("mongoose").Types.ObjectId;
     user_id?: import("mongoose").Types.ObjectId;
+    car_id?: import("mongoose").Types.ObjectId;
 }>> & Omit<import("mongoose").FlatRecord<{
     review_comment: string[];
-    car_id?: import("mongoose").Types.ObjectId;
     user_id?: import("mongoose").Types.ObjectId;
+    car_id?: import("mongoose").Types.ObjectId;
 }> & {
     _id: import("mongoose").Types.ObjectId;
 }, never>>>;
