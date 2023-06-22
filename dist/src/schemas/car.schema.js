@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Car = void 0;
+const mongoose_1 = require("mongoose");
+const carSchema = new mongoose_1.Schema({
+    locals: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Locals' },
+    car_brand: String,
+    car_model: String,
+    car_licensePlate: String,
+    car_year: String,
+    car_color: String,
+    car_rentalPrice: Number,
+    car_availability: String
+});
+exports.Car = (0, mongoose_1.model)('Cars', carSchema);
+//# sourceMappingURL=car.schema.js.map
