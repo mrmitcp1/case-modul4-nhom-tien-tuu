@@ -27,33 +27,42 @@ export declare const Car: import("mongoose").Model<{
     car_img: string[];
     car_brand?: string;
     car_model?: string;
+    car_type?: string;
+    car_gear?: string;
     car_licensePlate?: string;
     car_year?: string;
     car_color?: string;
     car_rentalPrice?: number;
     car_availability?: string;
+    car_seat?: number;
     pickup?: import("mongoose").Types.ObjectId;
     drop?: import("mongoose").Types.ObjectId;
 }, {}, {}, {}, import("mongoose").Document<unknown, {}, {
     car_img: string[];
     car_brand?: string;
     car_model?: string;
+    car_type?: string;
+    car_gear?: string;
     car_licensePlate?: string;
     car_year?: string;
     car_color?: string;
     car_rentalPrice?: number;
     car_availability?: string;
+    car_seat?: number;
     pickup?: import("mongoose").Types.ObjectId;
     drop?: import("mongoose").Types.ObjectId;
 }> & Omit<{
     car_img: string[];
     car_brand?: string;
     car_model?: string;
+    car_type?: string;
+    car_gear?: string;
     car_licensePlate?: string;
     car_year?: string;
     car_color?: string;
     car_rentalPrice?: number;
     car_availability?: string;
+    car_seat?: number;
     pickup?: import("mongoose").Types.ObjectId;
     drop?: import("mongoose").Types.ObjectId;
 } & {
@@ -62,33 +71,42 @@ export declare const Car: import("mongoose").Model<{
     car_img: string[];
     car_brand?: string;
     car_model?: string;
+    car_type?: string;
+    car_gear?: string;
     car_licensePlate?: string;
     car_year?: string;
     car_color?: string;
     car_rentalPrice?: number;
     car_availability?: string;
+    car_seat?: number;
     pickup?: import("mongoose").Types.ObjectId;
     drop?: import("mongoose").Types.ObjectId;
 }, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<{
     car_img: string[];
     car_brand?: string;
     car_model?: string;
+    car_type?: string;
+    car_gear?: string;
     car_licensePlate?: string;
     car_year?: string;
     car_color?: string;
     car_rentalPrice?: number;
     car_availability?: string;
+    car_seat?: number;
     pickup?: import("mongoose").Types.ObjectId;
     drop?: import("mongoose").Types.ObjectId;
 }>> & Omit<import("mongoose").FlatRecord<{
     car_img: string[];
     car_brand?: string;
     car_model?: string;
+    car_type?: string;
+    car_gear?: string;
     car_licensePlate?: string;
     car_year?: string;
     car_color?: string;
     car_rentalPrice?: number;
     car_availability?: string;
+    car_seat?: number;
     pickup?: import("mongoose").Types.ObjectId;
     drop?: import("mongoose").Types.ObjectId;
 }> & {
