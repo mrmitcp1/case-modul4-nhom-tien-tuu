@@ -16,6 +16,7 @@ const carSchema = new mongoose_1.Schema({
     car_availability: String,
     car_img: [String],
     car_seat: Number,
+    car_des: String,
 });
 exports.Car = (0, mongoose_1.model)("Cars", carSchema);
 //# sourceMappingURL=car.schema.js.map

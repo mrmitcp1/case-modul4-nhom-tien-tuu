@@ -14,5 +14,6 @@ const carSchema = new Schema({
   car_availability: String,
   car_img: [String],
   car_seat: Number,
+  car_des: String,
 });
 export const Car = model("Cars", carSchema);

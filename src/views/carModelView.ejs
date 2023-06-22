@@ -193,12 +193,13 @@
         </div>
         <div class="row model_pg1">
           <% data.forEach((item) => { %>
-          <div class="col-md-4">
+
+          <div class="col-md-4 car-cards">
             <div class="model_pg1i clearfix">
               <div class="model_pg1i1">
                 <div class="grid clearfix">
                   <figure class="effect-jazz mb-0">
-                    <a href="#"
+                    <a href="/cars/detail/<%= item._id %>"
                       ><img
                         src="/images/<%= item.car_img[0] %>"
                         class="w-100"
@@ -211,7 +212,11 @@
                 <div class="model_pg1i2 row">
                   <div class="col-md-6 col-sm-6">
                     <div class="model_pg1i2l">
-                      <h3><%= item.car_model %></h3>
+                      <h3>
+                        <a href="/cars/detail/<%= item._id %>"
+                          ><%= item.car_model %></a
+                        >
+                      </h3>
                       <!-- <span class="font_12 col_yell">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>

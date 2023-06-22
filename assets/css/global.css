@@ -568,4 +568,9 @@ a.socialIcon:hover,
 
 .grid figure {
   max-height: 200px;
+  justify-content: center;
+}
+
+.car-cards {
+  margin-bottom: 20px;
 }

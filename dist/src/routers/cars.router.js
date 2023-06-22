@@ -19,5 +19,6 @@ const carRouter = (0, express_1.Router)();
 carRouter.get("/admin/create", cars_controller_1.default.showCreateForm);
 carRouter.post("/admin/create", upload.array("img", 10), cars_controller_1.default.createCar);
 carRouter.get("/cars/list", cars_controller_1.default.showAllCar);
+carRouter.get("/cars/detail/:id", cars_controller_1.default.carDetail);
 exports.default = carRouter;
 //# sourceMappingURL=cars.router.js.map

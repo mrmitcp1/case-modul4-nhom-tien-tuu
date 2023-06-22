@@ -6,5 +6,5 @@ const dropofLocaltionSchema = new mongoose_1.Schema({
     dropofLocaltion_name: String,
     drop_time: Date,
 });
-exports.DropofLocaltion = (0, mongoose_1.model)('DropofLocaltions', dropofLocaltionSchema);
+exports.DropofLocaltion = (0, mongoose_1.model)("DropofLocaltions", dropofLocaltionSchema);
 //# sourceMappingURL=dropoflocaltion.schema.js.map
