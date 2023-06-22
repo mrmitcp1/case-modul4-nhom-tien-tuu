@@ -4,6 +4,8 @@ import mongoose from "mongoose";
 import session from "express-session";
 import livereload from "connect-livereload";
 import passport from "passport";
+import { router } from "./src/routers/register.router";
+import authRouter from "./src/routers/auth.router";
 
 const PORT = 3333;
 const app = express();
@@ -29,6 +31,17 @@ app.use(
 app.use(livereload());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static('assets'));
+app.use(router);
+app.use(authRouter);
+app.use((req: any, res: any, next: any) => {
+        if (req.isAuthenticated()) {
+                res.locals.userLogin = req.user
+                next();
+        } else {
+                res.redirect('/login.html')
+        }
+})
 
 app.listen(PORT, () => {
   console.log("App running on port: " + PORT);
