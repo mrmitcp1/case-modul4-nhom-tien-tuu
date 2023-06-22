@@ -4,7 +4,6 @@ const car_schema_1 = require("../schemas/car.schema");
 class CarController {
     static async showAllCar(req, res) {
         const cars = await car_schema_1.Car.find();
-        console.log(cars[0]._id);
         res.render("carModelView", { data: cars });
     }
     static async carDetail(req, res) {

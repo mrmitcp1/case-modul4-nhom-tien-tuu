@@ -3,8 +3,6 @@ import { Car } from "../schemas/car.schema";
 class CarController {
   static async showAllCar(req: any, res: any) {
     const cars = await Car.find();
-    console.log(cars[0]._id);
-
     res.render("carModelView", { data: cars });
   }
 

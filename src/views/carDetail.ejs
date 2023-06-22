@@ -19,7 +19,7 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
   </head>
   <body>
     <div class="main_o clearfix position-relative">
@@ -211,7 +211,49 @@
                 <h2 class="mt-3">
                   <%= data.car_brand %> <%= data.car_model %>
                 </h2>
-                <%= data.car_des %>
+                <hr />
+                <div style="width: 100%; overflow: auto">
+                  <pre class="pre-text"><%= data.car_des %></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="blog_1l2 mt-4 p-3 clearfix">
+              <h1>Thông tin xe:</h1>
+              <hr />
+              <h5 class="align-h6">
+                <i class="fa fa-industry col_oran me-1"></i> Hãng sản xuất: <%=
+                data.car_brand %>
+              </h5>
+              <h5 class="align-h6">
+                <i class="fa fa-car col_oran me-1"></i> Tên xe: <%=
+                data.car_model %>
+              </h5>
+              <h5 class="align-h6">
+                <i class="fa fa-filter col_oran me-1"></i> Loại xe: <%=
+                data.car_type %>
+              </h5>
+              <h5 class="align-h6">
+                <i class="fa fa-gear col_oran me-1"></i> Kiểu hộp số: <%=
+                data.car_gear %>
+              </h5>
+              <h5 class="align-h6">
+                <i class="fa fa-hashtag col_oran me-1"></i> Biển số xe: <%=
+                data.car_licensePlate %>
+              </h5>
+              <h5 class="align-h6">
+                <i class="fa fa-calendar col_oran me-1"></i> Năm sản xuất: <%=
+                data.car_year %>
+              </h5>
+              <h5 class="align-h6">
+                <i class="fa fa-gears col_oran me-1"></i> Màu xe: <%=
+                data.car_color %>
+              </h5>
+              <h5 class="align-h6">
+                <i class="fa fa-male col_oran me-1"></i> Số ghế: <%=
+                data.car_seat %>
+              </h5>
             </div>
           </div>
         </div>
