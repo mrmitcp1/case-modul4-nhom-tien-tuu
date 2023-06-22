@@ -13,7 +13,6 @@ const DB_URL = "mongodb://127.0.0.1:27017/case_modul4";
 mongoose
   .connect(DB_URL)
   .then(() => console.log("DB Connected!"))
-
   .catch((error) => console.log("DB connection error:", error.message));
 
 app.use(bodyParser.json());
