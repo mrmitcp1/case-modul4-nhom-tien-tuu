@@ -198,9 +198,9 @@
             <div class="model_pg1i clearfix">
               <div class="model_pg1i1">
                 <div class="grid clearfix">
-                  <figure class="effect-jazz mb-0">
-                    <a href="/cars/detail/<%= item._id %>"
-                      ><img
+                  <figure class="effect-jazz mb-0 img-helper">
+                    <a href="/cars/detail/<%= item._id %>">
+                      <img
                         src="/images/<%= item.car_img[0] %>"
                         class="w-100"
                         alt="abc"
@@ -212,11 +212,11 @@
                 <div class="model_pg1i2 row">
                   <div class="col-md-6 col-sm-6">
                     <div class="model_pg1i2l">
-                      <h3>
+                      <h4>
                         <a href="/cars/detail/<%= item._id %>"
                           ><%= item.car_model %></a
                         >
-                      </h3>
+                      </h4>
                       <!-- <span class="font_12 col_yell">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -267,7 +267,7 @@
                 <div class="model_pg1i4 row text-center mt-4">
                   <div class="col-md-12">
                     <h6 class="mb-0">
-                      <a class="button" href="#"
+                      <a class="button book-btn" href="#"
                         >Book Ride <i class="fa fa-check-circle ms-1"></i>
                       </a>
                     </h6>

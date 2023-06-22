@@ -591,3 +591,14 @@ pre {
 .align-h6 {
   margin-bottom: 22px;
 }
+
+.img-helper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+.book-btn {
+  width: 100%;
+}
