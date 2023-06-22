@@ -11,19 +11,20 @@ const connect_livereload_1 = __importDefault(require("connect-livereload"));
 const passport_1 = __importDefault(require("passport"));
 const PORT = 3333;
 const app = (0, express_1.default)();
-app.set('view engine', 'ejs');
-app.set('views', './src/views');
-const DB_URL = 'mongodb://127.0.0.1:27017/case_modul4';
-mongoose_1.default.connect(DB_URL)
-    .then(() => console.log('DB Connected!'))
-    .catch(error => console.log('DB connection error:', error.message));
+app.set("view engine", "ejs");
+app.set("views", "./src/views");
+const DB_URL = "mongodb://127.0.0.1:27017/case_modul4";
+mongoose_1.default
+    .connect(DB_URL)
+    .then(() => console.log("DB Connected!"))
+    .catch((error) => console.log("DB connection error:", error.message));
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use((0, express_session_1.default)({
-    secret: 'keyboard cat',
+    secret: "keyboard cat",
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }
+    cookie: { secure: false },
 }));
 app.use((0, connect_livereload_1.default)());
 app.use(passport_1.default.initialize());
