@@ -18,7 +18,7 @@ passport_1.default.use(new passport_local_1.Strategy(async function verify(usern
 }));
 passport_1.default.serializeUser((user, cb) => {
     process.nextTick(() => {
-        cb(null, { id: user._id, username: user.user_email });
+        cb(null, { id: user._id, username: user.user_email, role: user.user_role });
     });
 });
 passport_1.default.deserializeUser((user, cb) => {

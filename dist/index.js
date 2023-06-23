@@ -11,6 +11,8 @@ const connect_livereload_1 = __importDefault(require("connect-livereload"));
 const passport_1 = __importDefault(require("passport"));
 const register_router_1 = require("./src/routers/register.router");
 const auth_router_1 = __importDefault(require("./src/routers/auth.router"));
+const local_router_1 = __importDefault(require("./src/routers/local.router"));
+const cars_router_1 = __importDefault(require("./src/routers/cars.router"));
 const PORT = 3333;
 const app = (0, express_1.default)();
 app.set("view engine", "ejs");
@@ -20,8 +22,10 @@ mongoose_1.default
     .connect(DB_URL)
     .then(() => console.log("DB Connected!"))
     .catch((error) => console.log("DB connection error:", error.message));
-app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
+app.use(body_parser_1.default.json());
+app.use(express_1.default.static("./public"));
+app.use(express_1.default.static("./assets"));
 app.use((0, express_session_1.default)({
     secret: "keyboard cat",
     resave: false,
@@ -31,7 +35,7 @@ app.use((0, express_session_1.default)({
 app.use((0, connect_livereload_1.default)());
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
-app.use(express_1.default.static('assets'));
+app.use(cars_router_1.default);
 app.use(register_router_1.router);
 app.use(auth_router_1.default);
 app.use((req, res, next) => {
@@ -40,9 +44,10 @@ app.use((req, res, next) => {
         next();
     }
     else {
-        res.redirect('/login.html');
+        res.redirect("/login.html");
     }
 });
+app.use("/adm", local_router_1.default);
 app.listen(PORT, () => {
     console.log("App running on port: " + PORT);
 });

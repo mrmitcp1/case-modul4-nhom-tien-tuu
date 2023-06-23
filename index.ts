@@ -36,20 +36,18 @@ app.use(
 app.use(livereload());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static('assets'));
+app.use(carRouter);
 app.use(router);
 app.use(authRouter);
 app.use((req: any, res: any, next: any) => {
-        if (req.isAuthenticated()) {
-                res.locals.userLogin = req.user
-                next();
-        } else {
-                res.redirect('/login.html')
-        }
-})
-app.use('/adm',localRouter)
-
-app.use(carRouter);
+  if (req.isAuthenticated()) {
+    res.locals.userLogin = req.user;
+    next();
+  } else {
+    res.redirect("/login.html");
+  }
+});
+app.use("/adm", localRouter);
 
 app.listen(PORT, () => {
   console.log("App running on port: " + PORT);
