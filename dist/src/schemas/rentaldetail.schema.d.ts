@@ -24,31 +24,43 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { Schema } from "mongoose";
 export declare const RentalDetail: import("mongoose").Model<{
-    user_id?: import("mongoose").Types.ObjectId;
-    car_id?: import("mongoose").Types.ObjectId;
+    pick_time?: Date;
+    drop_time?: Date;
     total_cost?: number;
+    car_id?: import("mongoose").Types.ObjectId;
+    user_id?: import("mongoose").Types.ObjectId;
 }, {}, {}, {}, import("mongoose").Document<unknown, {}, {
-    user_id?: import("mongoose").Types.ObjectId;
-    car_id?: import("mongoose").Types.ObjectId;
+    pick_time?: Date;
+    drop_time?: Date;
     total_cost?: number;
+    car_id?: import("mongoose").Types.ObjectId;
+    user_id?: import("mongoose").Types.ObjectId;
 }> & Omit<{
-    user_id?: import("mongoose").Types.ObjectId;
-    car_id?: import("mongoose").Types.ObjectId;
+    pick_time?: Date;
+    drop_time?: Date;
     total_cost?: number;
+    car_id?: import("mongoose").Types.ObjectId;
+    user_id?: import("mongoose").Types.ObjectId;
 } & {
     _id: import("mongoose").Types.ObjectId;
 }, never>, Schema<any, import("mongoose").Model<any, any, any, any, any, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, {
-    user_id?: import("mongoose").Types.ObjectId;
-    car_id?: import("mongoose").Types.ObjectId;
+    pick_time?: Date;
+    drop_time?: Date;
     total_cost?: number;
+    car_id?: import("mongoose").Types.ObjectId;
+    user_id?: import("mongoose").Types.ObjectId;
 }, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<{
-    user_id?: import("mongoose").Types.ObjectId;
-    car_id?: import("mongoose").Types.ObjectId;
+    pick_time?: Date;
+    drop_time?: Date;
     total_cost?: number;
+    car_id?: import("mongoose").Types.ObjectId;
+    user_id?: import("mongoose").Types.ObjectId;
 }>> & Omit<import("mongoose").FlatRecord<{
-    user_id?: import("mongoose").Types.ObjectId;
-    car_id?: import("mongoose").Types.ObjectId;
+    pick_time?: Date;
+    drop_time?: Date;
     total_cost?: number;
+    car_id?: import("mongoose").Types.ObjectId;
+    user_id?: import("mongoose").Types.ObjectId;
 }> & {
     _id: import("mongoose").Types.ObjectId;
 }, never>>>;
