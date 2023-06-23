@@ -14,9 +14,9 @@ import { Router } from "express";
 import CarController from "../controllers/cars.controller";
 const carRouter = Router();
 
-carRouter.get("/admin/create", CarController.showCreateForm);
+carRouter.get("/admin/createcar", CarController.showCreateForm);
 carRouter.post(
-  "/admin/create",
+  "/admin/createcar",
   upload.array("img", 10),
   CarController.createCar
 );

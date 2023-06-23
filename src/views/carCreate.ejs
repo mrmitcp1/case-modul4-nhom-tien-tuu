@@ -15,7 +15,25 @@
   <body>
     <div class="container">
       <h1>Tạo xe mới</h1>
-      <form method="post" action="/admin/create" enctype="multipart/form-data">
+      <form method="post" action="/admin/createcar" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Drop Of Local</label>
+          <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Drop Of Local"
+                  name="dropofLocaltion_name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Pick Up Local</label>
+          <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Pick Up Local"
+                  name="pickupLocaltion_name"
+          />
+        </div>
         <div class="form-group">
           <label for="exampleFormControlInput1">Nhập hãng xe</label>
           <input

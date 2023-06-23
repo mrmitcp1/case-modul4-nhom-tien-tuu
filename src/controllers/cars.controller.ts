@@ -1,4 +1,6 @@
 import { Car } from "../schemas/car.schema";
+import {DropofLocaltion} from "../schemas/dropoflocaltion.schema";
+import {PickupLocaltion} from "../schemas/pickuplocaltion.schema";
 
 class CarController {
   static async showAllCar(req: any, res: any) {
@@ -25,7 +27,15 @@ class CarController {
       carImages.forEach((item) => {
         images.push(item.originalname);
       });
-      const data = {
+      const dropNew = new DropofLocaltion({
+        dropofLocaltion_name : req.body.dropofLocaltion_name
+      });
+      const pickNew = new PickupLocaltion({
+        pickupLocaltion_name : req.body.pickupLocaltion_name
+      })
+      const car = new Car( {
+        dropOf : dropNew,
+        pickUp : pickNew,
         car_brand: req.body.brand,
         car_model: req.body.model,
         car_type: req.body.type,
@@ -38,14 +48,20 @@ class CarController {
         car_img: images,
         car_seat: req.body.seat,
         car_des: req.body.des,
-      };
-      const car = new Car(data);
-      await car.save();
-      res.end(`Done`);
+      });
+      const carItem= await car.save();
+      const dropLocal = await dropNew.save();
+      const pickLocal = await pickNew.save();
+      let [dropOf,pickUp,cars]=await Promise.all([dropLocal,pickLocal,carItem])
+      if (cars){
+        res.redirect("/cars/list")
+      }
     } catch (err) {
       console.log(err.message);
     }
   }
+
+  static
 }
 
 export default CarController;
