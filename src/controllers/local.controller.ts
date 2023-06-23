@@ -23,7 +23,7 @@ class LocalController {
     }
 
     static async getCreateLocal(req,res){
-        await res.render('addlocals')
+        await res.render('admaddlocals')
     }
 
     static async getListLocal(req,res){
