@@ -34,7 +34,6 @@ app.use(livereload());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/adm',localRouter)
-
 app.use(carRouter);
 
 app.use("/car",rentalRouters);
