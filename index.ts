@@ -36,5 +36,5 @@ app.use(passport.session());
 app.use(carRouter);
 
 app.listen(PORT, () => {
-  console.log("App running on port: " + PORT);
+  console.log(`App is running at http://localhost:${PORT}/cars/list`);
 });

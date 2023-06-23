@@ -34,6 +34,6 @@ app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
 app.use(cars_router_1.default);
 app.listen(PORT, () => {
-    console.log("App running on port: " + PORT);
+    console.log(`App is running at http://localhost:${PORT}/cars/list`);
 });
 //# sourceMappingURL=index.js.map

@@ -24,31 +24,31 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { Schema } from "mongoose";
 export declare const RentalDetail: import("mongoose").Model<{
-    total_cost?: number;
-    car_id?: import("mongoose").Types.ObjectId;
     user_id?: import("mongoose").Types.ObjectId;
+    car_id?: import("mongoose").Types.ObjectId;
+    total_cost?: number;
 }, {}, {}, {}, import("mongoose").Document<unknown, {}, {
-    total_cost?: number;
-    car_id?: import("mongoose").Types.ObjectId;
     user_id?: import("mongoose").Types.ObjectId;
+    car_id?: import("mongoose").Types.ObjectId;
+    total_cost?: number;
 }> & Omit<{
-    total_cost?: number;
-    car_id?: import("mongoose").Types.ObjectId;
     user_id?: import("mongoose").Types.ObjectId;
+    car_id?: import("mongoose").Types.ObjectId;
+    total_cost?: number;
 } & {
     _id: import("mongoose").Types.ObjectId;
 }, never>, Schema<any, import("mongoose").Model<any, any, any, any, any, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, {
-    total_cost?: number;
-    car_id?: import("mongoose").Types.ObjectId;
     user_id?: import("mongoose").Types.ObjectId;
+    car_id?: import("mongoose").Types.ObjectId;
+    total_cost?: number;
 }, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<{
-    total_cost?: number;
-    car_id?: import("mongoose").Types.ObjectId;
     user_id?: import("mongoose").Types.ObjectId;
+    car_id?: import("mongoose").Types.ObjectId;
+    total_cost?: number;
 }>> & Omit<import("mongoose").FlatRecord<{
-    total_cost?: number;
-    car_id?: import("mongoose").Types.ObjectId;
     user_id?: import("mongoose").Types.ObjectId;
+    car_id?: import("mongoose").Types.ObjectId;
+    total_cost?: number;
 }> & {
     _id: import("mongoose").Types.ObjectId;
 }, never>>>;
