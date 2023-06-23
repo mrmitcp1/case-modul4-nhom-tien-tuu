@@ -3,3 +3,5 @@
 /vscode
 /package.json
 /package-lock.json
+/dist
+/**/images

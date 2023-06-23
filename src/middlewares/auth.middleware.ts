@@ -14,7 +14,7 @@ passport.use(new Strategy(async function verify(username:string, password: strin
 
 passport.serializeUser((user: any, cb)  => {
     process.nextTick(() => {
-        cb(null, { id: user._id, username: user.user_email });
+        cb(null, { id: user._id, username: user.user_email,role:user.user_role });
     });
 });
 

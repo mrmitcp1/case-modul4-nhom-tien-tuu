@@ -7,6 +7,10 @@ import passport from "passport";
 import { router } from "./src/routers/register.router";
 import authRouter from "./src/routers/auth.router";
 
+import localRouter from "./src/routers/local.router";
+
+import carRouter from "./src/routers/cars.router";
+
 const PORT = 3333;
 const app = express();
 app.set("view engine", "ejs");
@@ -15,11 +19,12 @@ const DB_URL = "mongodb://127.0.0.1:27017/case_modul4";
 mongoose
   .connect(DB_URL)
   .then(() => console.log("DB Connected!"))
-
   .catch((error) => console.log("DB connection error:", error.message));
 
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static("./public"));
+app.use(express.static("./assets"));
 app.use(
   session({
     secret: "keyboard cat",
@@ -42,6 +47,9 @@ app.use((req: any, res: any, next: any) => {
                 res.redirect('/login.html')
         }
 })
+app.use('/adm',localRouter)
+
+app.use(carRouter);
 
 app.listen(PORT, () => {
   console.log("App running on port: " + PORT);
