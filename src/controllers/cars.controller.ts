@@ -121,7 +121,6 @@ class CarController {
     try {
       const car = await Car.findOne({_id : req.params.id})
       if (car){
-        console.log(car)
         await car.deleteOne({_id : req.params.id})
         res.redirect('/adm/list')
       }else {
