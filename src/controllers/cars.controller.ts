@@ -18,15 +18,8 @@ class CarController {
   }
 
   static async showCreateForm(req: any, res: any) {
-    try {
-          const dropLocal = await DropofLocaltion.find();
-          const pickLocal = await PickupLocaltion.find();
-          res.render("admcarCreate",{dropLocal:dropLocal,pickLocal:pickLocal})
-        }catch (e){
-          res.render('notfound')
-        }
-      }
-
+    res.render("admcarCreate");
+  }
 
   static async createCar(req: any, res: any) {
     try {
@@ -42,8 +35,8 @@ class CarController {
         pickupLocaltion_name : req.body.pickupLocaltion_name
       })
       const car = new Car( {
-        drop : dropNew,
-        pickup : pickNew,
+        dropOf : dropNew,
+        pickUp : pickNew,
         car_brand: req.body.brand,
         car_model: req.body.model,
         car_type: req.body.type,
@@ -60,7 +53,7 @@ class CarController {
       const carItem= await car.save();
       const dropLocal = await dropNew.save();
       const pickLocal = await pickNew.save();
-      let [drop,pickup,cars]=await Promise.all([dropLocal,pickLocal,carItem])
+      let [dropOf,pickUp,cars]=await Promise.all([dropLocal,pickLocal,carItem])
       if (cars){
         res.redirect("/adm/list")
       }
@@ -128,6 +121,7 @@ class CarController {
     try {
       const car = await Car.findOne({_id : req.params.id})
       if (car){
+        console.log(car)
         await car.deleteOne({_id : req.params.id})
         res.redirect('/adm/list')
       }else {
