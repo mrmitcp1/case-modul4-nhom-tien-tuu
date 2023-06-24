@@ -17,23 +17,21 @@
   <h1>Create A New Car</h1>
   <form method="post" action="" enctype="multipart/form-data">
     <div class="form-group">
-      <label for="exampleFormControlInput1">Drop Of Local</label>
-      <input
-              type="text"
-              class="form-control"
-              placeholder="Drop Of Local"
-              name="dropofLocaltion_name"
-      />
+      <label for="exampleFormControlSelect1">Pick Up Local</label>
+      <select class="form-control" name="pickupLocaltion_name">
+        <% pickLocal.forEach((pick) => { %>
+        <option><%=pick.pickupLocaltion_name%></option>
+        <% }) %>
+      </select>
     </div>
-    <div class="form-group">
-      <label for="exampleFormControlInput1">Pick Up Local</label>
-      <input
-              type="text"
-              class="form-control"
-              placeholder="Pick Up Local"
-              name="pickupLocaltion_name"
-      />
-    </div>
+      <div class="form-group">
+          <label for="exampleFormControlSelect1">Drop Of Local</label>
+          <select class="form-control" name="dropofLocaltion_name">
+              <% dropLocal.forEach((drop) => { %>
+              <option><%=drop.dropofLocaltion_name%></option>
+              <% }) %>
+          </select>
+      </div>
     <div class="form-group">
       <label for="exampleFormControlInput1">Brand Of Car</label>
       <input
