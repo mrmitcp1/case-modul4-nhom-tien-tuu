@@ -14,7 +14,10 @@ const upload = multer({ storage: storage });
 
 class RentalControllers {
     static async getFormBookCar (req:any, res:any){
-        const dataCar = await Car.findOne({_id:req.params.id});
+        const dataCar = await Car.findOne({_id:req.params.id}).populate({
+            path: "pickup", select:"pickupLocaltion_name"
+        });
+        console.log(dataCar)
         res.render("bookCar",{car:dataCar})
     }
     static async filterSuitableCar (req:any, res:any){

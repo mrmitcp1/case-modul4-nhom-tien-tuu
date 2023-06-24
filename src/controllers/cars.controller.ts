@@ -35,8 +35,8 @@ class CarController {
         pickupLocaltion_name : req.body.pickupLocaltion_name
       })
       const car = new Car( {
-        dropOf : dropNew,
-        pickUp : pickNew,
+        drop : dropNew,
+        pickup : pickNew,
         car_brand: req.body.brand,
         car_model: req.body.model,
         car_type: req.body.type,
@@ -50,9 +50,11 @@ class CarController {
         car_seat: req.body.seat,
         car_des: req.body.des,
       });
+      console.log(car.drop)
       const carItem= await car.save();
       const dropLocal = await dropNew.save();
       const pickLocal = await pickNew.save();
+
       let [dropOf,pickUp,cars]=await Promise.all([dropLocal,pickLocal,carItem])
       if (cars){
         res.redirect("/adm/list")
