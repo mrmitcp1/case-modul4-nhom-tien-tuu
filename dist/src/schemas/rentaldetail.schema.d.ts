@@ -24,40 +24,40 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { Schema } from "mongoose";
 export declare const RentalDetail: import("mongoose").Model<{
-    pick_time?: Date;
-    drop_time?: Date;
+    datePickup?: Date;
+    dateDrop?: Date;
     total_cost?: number;
     car_id?: import("mongoose").Types.ObjectId;
     user_id?: import("mongoose").Types.ObjectId;
 }, {}, {}, {}, import("mongoose").Document<unknown, {}, {
-    pick_time?: Date;
-    drop_time?: Date;
+    datePickup?: Date;
+    dateDrop?: Date;
     total_cost?: number;
     car_id?: import("mongoose").Types.ObjectId;
     user_id?: import("mongoose").Types.ObjectId;
 }> & Omit<{
-    pick_time?: Date;
-    drop_time?: Date;
+    datePickup?: Date;
+    dateDrop?: Date;
     total_cost?: number;
     car_id?: import("mongoose").Types.ObjectId;
     user_id?: import("mongoose").Types.ObjectId;
 } & {
     _id: import("mongoose").Types.ObjectId;
 }, never>, Schema<any, import("mongoose").Model<any, any, any, any, any, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, {
-    pick_time?: Date;
-    drop_time?: Date;
+    datePickup?: Date;
+    dateDrop?: Date;
     total_cost?: number;
     car_id?: import("mongoose").Types.ObjectId;
     user_id?: import("mongoose").Types.ObjectId;
 }, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<{
-    pick_time?: Date;
-    drop_time?: Date;
+    datePickup?: Date;
+    dateDrop?: Date;
     total_cost?: number;
     car_id?: import("mongoose").Types.ObjectId;
     user_id?: import("mongoose").Types.ObjectId;
 }>> & Omit<import("mongoose").FlatRecord<{
-    pick_time?: Date;
-    drop_time?: Date;
+    datePickup?: Date;
+    dateDrop?: Date;
     total_cost?: number;
     car_id?: import("mongoose").Types.ObjectId;
     user_id?: import("mongoose").Types.ObjectId;

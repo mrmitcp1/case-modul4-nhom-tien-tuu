@@ -148,184 +148,77 @@
         </section>
         <section id="booking">
             <div class="container-xl">
-                <div class="booking_m clearfix bg-white">
-                    <div class="row booking_1">
-                        <div class="col-md-12">
-                            <h4 class="mb-0">Book a car</h4>
-                        </div>
-                    </div>
-                    <div class="row booking_2 mt-4">
-                        <div class="col-md-4 col-sm-6">
-                            <div class="booking_2i">
-                                <h6 class="mb-3"><i class="fa fa-car me-1 col_oran"></i> Loại xe bạn chọn</h6>
-                                <select class="form-select" id="example-select">
-                                    <option><%= car.car_model%></option>
-                                </select>
+                <form action="" method="post">
+                    <div class="booking_m clearfix bg-white">
+                        <div class="row booking_1">
+                            <div class="col-md-12">
+                                <h4 class="mb-0">Book a car</h4>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="booking_2i">
-                                <h6 class="mb-3"><i class="fa fa-map-marker me-1 col_oran"></i> Điểm đón</h6>
-                                <select class="form-select" id="example-select">
-                                    <option><%=car.pickup.pickupLocaltion_name%></option>
-                                </select>
+                        <div class="row booking_2 mt-4">
+                            <div class="col-md-4 col-sm-6">
+                                <div class="booking_2i">
+                                    <h6 class="mb-3"><i class="fa fa-car me-1 col_oran"></i> Loại xe bạn chọn</h6>
+                                    <select class="form-select" id="example-select" name="nameCarSelect">
+                                        <option><%= car.car_model %></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="booking_2i">
+                                    <h6 class="mb-3"><i class="fa fa-map-marker me-1 col_oran"></i> Nhận xe </h6>
+                                    <select class="form-select" id="example-select" name="pickupLocation">
+                                        <option><%= car.pickup.pickupLocaltion_name %></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <div class="booking_2i">
+                                    <h6 class="mb-3"><i class="fa fa-map-marker me-1 col_oran"></i> Trả xe</h6>
+                                    <select class="form-select" id="example-select" name="dropofLocation">
+                                        <% dropLocations.forEach(location => { %>
+                                            <option><%= location.dropofLocaltion_name %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-12">
-                            <div class="booking_2i">
-                                <h6 class="mb-3"><i class="fa fa-map-marker me-1 col_oran"></i> Điểm trả</h6>
-                                <select class="form-select" id="example-select">
-                                    <option>Delhi road</option>
-                                    <option>Mumbai city</option>
-                                    <option>London</option>
-                                    <option>Brisbane</option>
-                                    <option>Pearth</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row booking_2 mt-4">
-                        <div class="col-md-4 col-sm-6">
-                            <div class="booking_2i">
-                                <h6 class="mb-3"><i class="fa fa-calendar me-1 col_oran"></i> Thời gian thuê xe</h6>
-                                <div class="booking_2i1 row">
-                                    <div class="col-md-8">
-                                        <div class="booking_2i1l">
-                                            <input class="form-control" id="example-date" type="date" name="date">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 ps-0">
-                                        <div class="booking_2i1r">
-                                            <select class="form-select" id="example-select">
-                                                <option value="12:00 AM">12:00 AM</option>
-                                                <option value="12:30 AM">12:30 AM</option>
-                                                <option value="01:00 AM">01:00 AM</option>
-                                                <option value="01:30 AM">01:30 AM</option>
-                                                <option value="02:00 AM">02:00 AM</option>
-                                                <option value="02:30 AM">02:30 AM</option>
-                                                <option value="03:00 AM">03:00 AM</option>
-                                                <option value="03:30 AM">03:30 AM</option>
-                                                <option value="04:00 AM">04:00 AM</option>
-                                                <option value="04:30 AM">04:30 AM</option>
-                                                <option value="05:00 AM">05:00 AM</option>
-                                                <option value="05:30 AM">05:30 AM</option>
-                                                <option value="06:00 AM">06:00 AM</option>
-                                                <option value="06:30 AM">06:30 AM</option>
-                                                <option value="07:00 AM">07:00 AM</option>
-                                                <option value="07:30 AM">07:30 AM</option>
-                                                <option value="08:00 AM">08:00 AM</option>
-                                                <option value="08:30 AM">08:30 AM</option>
-                                                <option value="09:00 AM">09:00 AM</option>
-                                                <option value="09:30 AM">09:30 AM</option>
-                                                <option value="10:00 AM">10:00 AM</option>
-                                                <option value="10:30 AM">10:30 AM</option>
-                                                <option value="11:00 AM">11:00 AM</option>
-                                                <option value="11:30 AM">11:30 AM</option>
-                                                <option value="12:00 PM">12:00 PM</option>
-                                                <option value="12:30 PM">12:30 PM</option>
-                                                <option value="01:00 PM">01:00 PM</option>
-                                                <option value="01:30 PM">01:30 PM</option>
-                                                <option value="02:00 PM">02:00 PM</option>
-                                                <option value="02:30 PM">02:30 PM</option>
-                                                <option value="03:00 PM">03:00 PM</option>
-                                                <option value="03:30 PM">03:30 PM</option>
-                                                <option value="04:00 PM">04:00 PM</option>
-                                                <option value="04:30 PM">04:30 PM</option>
-                                                <option value="05:00 PM">05:00 PM</option>
-                                                <option value="05:30 PM">05:30 PM</option>
-                                                <option value="06:00 PM">06:00 PM</option>
-                                                <option value="06:30 PM">06:30 PM</option>
-                                                <option value="07:00 PM">07:00 PM</option>
-                                                <option value="07:30 PM">07:30 PM</option>
-                                                <option value="08:00 PM">08:00 PM</option>
-                                                <option value="08:30 PM">08:30 PM</option>
-                                                <option value="09:00 PM">09:00 PM</option>
-                                                <option value="09:30 PM">09:30 PM</option>
-                                                <option value="10:00 PM">10:30 PM</option>
-                                                <option value="10:30 PM">12:00 AM</option>
-                                                <option value="11:00 PM">11:00 PM</option>
-                                                <option value="11:30 PM">11:30 PM</option>
-                                            </select>
+                        <div class="row booking_2 mt-4">
+                            <div class="col-md-4 col-sm-6">
+                                <div class="booking_2i">
+                                    <h6 class="mb-3"><i class="fa fa-calendar me-1 col_oran"></i> Thời gian thuê xe</h6>
+                                    <div class="booking_2i1 row">
+                                        <div class="col-md-8">
+                                            <div class="booking_2i1l">
+                                                <input class="form-control" id="example-date" type="datetime-local" name="datePickup">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="booking_2i">
-                                <h6 class="mb-3"><i class="fa fa-calendar me-1 col_oran"></i> Thời gian trả xe</h6>
-                                <div class="booking_2i1 row">
-                                    <div class="col-md-8">
-                                        <div class="booking_2i1l">
-                                            <input class="form-control" id="example-date" type="date" name="date">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 ps-0">
-                                        <div class="booking_2i1r">
-                                            <select class="form-select" id="example-select">
-                                                <option value="12:00 AM">12:00 AM</option>
-                                                <option value="12:30 AM">12:30 AM</option>
-                                                <option value="01:00 AM">01:00 AM</option>
-                                                <option value="01:30 AM">01:30 AM</option>
-                                                <option value="02:00 AM">02:00 AM</option>
-                                                <option value="02:30 AM">02:30 AM</option>
-                                                <option value="03:00 AM">03:00 AM</option>
-                                                <option value="03:30 AM">03:30 AM</option>
-                                                <option value="04:00 AM">04:00 AM</option>
-                                                <option value="04:30 AM">04:30 AM</option>
-                                                <option value="05:00 AM">05:00 AM</option>
-                                                <option value="05:30 AM">05:30 AM</option>
-                                                <option value="06:00 AM">06:00 AM</option>
-                                                <option value="06:30 AM">06:30 AM</option>
-                                                <option value="07:00 AM">07:00 AM</option>
-                                                <option value="07:30 AM">07:30 AM</option>
-                                                <option value="08:00 AM">08:00 AM</option>
-                                                <option value="08:30 AM">08:30 AM</option>
-                                                <option value="09:00 AM">09:00 AM</option>
-                                                <option value="09:30 AM">09:30 AM</option>
-                                                <option value="10:00 AM">10:00 AM</option>
-                                                <option value="10:30 AM">10:30 AM</option>
-                                                <option value="11:00 AM">11:00 AM</option>
-                                                <option value="11:30 AM">11:30 AM</option>
-                                                <option value="12:00 PM">12:00 PM</option>
-                                                <option value="12:30 PM">12:30 PM</option>
-                                                <option value="01:00 PM">01:00 PM</option>
-                                                <option value="01:30 PM">01:30 PM</option>
-                                                <option value="02:00 PM">02:00 PM</option>
-                                                <option value="02:30 PM">02:30 PM</option>
-                                                <option value="03:00 PM">03:00 PM</option>
-                                                <option value="03:30 PM">03:30 PM</option>
-                                                <option value="04:00 PM">04:00 PM</option>
-                                                <option value="04:30 PM">04:30 PM</option>
-                                                <option value="05:00 PM">05:00 PM</option>
-                                                <option value="05:30 PM">05:30 PM</option>
-                                                <option value="06:00 PM">06:00 PM</option>
-                                                <option value="06:30 PM">06:30 PM</option>
-                                                <option value="07:00 PM">07:00 PM</option>
-                                                <option value="07:30 PM">07:30 PM</option>
-                                                <option value="08:00 PM">08:00 PM</option>
-                                                <option value="08:30 PM">08:30 PM</option>
-                                                <option value="09:00 PM">09:00 PM</option>
-                                                <option value="09:30 PM">09:30 PM</option>
-                                                <option value="10:00 PM">10:30 PM</option>
-                                                <option value="10:30 PM">12:00 AM</option>
-                                                <option value="11:00 PM">11:00 PM</option>
-                                                <option value="11:30 PM">11:30 PM</option>
-                                            </select>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="booking_2i">
+                                    <h6 class="mb-3"><i class="fa fa-calendar me-1 col_oran"></i> Thời gian trả xe</h6>
+                                    <div class="booking_2i1 row">
+                                        <div class="col-md-8">
+                                            <div class="booking_2i1l">
+                                                <input class="form-control" id="example-date" type="datetime-local" name="dateDropof">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 col-sm-12">
-                            <div class="booking_2i">
-                                <h6 class="mb-3"><i class="fa fa-search me-1 col_oran"></i> Đặt xe</h6>
-                                <h6 class="text-center mb-0"><a class="button pt-3 pb-3 d-block" href="#">Tìm kiếm xe phù hợp </a>
-                                </h6>
+                            <div class="col-md-4 col-sm-12">
+                                <div class="booking_2i">
+                                    <h6 class="mb-3"><i class="fa fa-info me-1 col_oran"></i></h6>
+                                    <h6 class="text-center mb-0"><button class="button pt-3 pb-3 d-block" type="submit">Chi
+                                            tiết đặt xe </button>
+                                    </h6>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </section>
         <section id="footer" class="pt-5 pb-5">
@@ -403,25 +296,25 @@
     </div>
 </div>
 
-        <script>
-            window.onscroll = function () {
-                myFunction()
-            };
+<script>
+    window.onscroll = function () {
+        myFunction()
+    };
 
-            var navbar_sticky = document.getElementById("navbar_sticky");
-            var sticky = navbar_sticky.offsetTop;
-            var navbar_height = document.querySelector('.navbar').offsetHeight;
+    var navbar_sticky = document.getElementById("navbar_sticky");
+    var sticky = navbar_sticky.offsetTop;
+    var navbar_height = document.querySelector('.navbar').offsetHeight;
 
-            function myFunction() {
-                if (window.pageYOffset >= sticky + navbar_height) {
-                    navbar_sticky.classList.add("sticky")
-                    document.body.style.paddingTop = navbar_height + 'px';
-                } else {
-                    navbar_sticky.classList.remove("sticky");
-                    document.body.style.paddingTop = '0'
-                }
-            }
-        </script>
+    function myFunction() {
+        if (window.pageYOffset >= sticky + navbar_height) {
+            navbar_sticky.classList.add("sticky")
+            document.body.style.paddingTop = navbar_height + 'px';
+        } else {
+            navbar_sticky.classList.remove("sticky");
+            document.body.style.paddingTop = '0'
+        }
+    }
+</script>
 
 </body>
 

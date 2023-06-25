@@ -18,8 +18,15 @@ class CarController {
   }
 
   static async showCreateForm(req: any, res: any) {
-    res.render("admcarCreate");
+    try {
+      const dropLocal = await DropofLocaltion.find();
+      const pickLocal = await PickupLocaltion.find();
+      res.render("admcarCreate",{dropLocal:dropLocal,pickLocal:pickLocal})
+    }catch (e){
+      res.render('notfound')
+    }
   }
+
 
   static async createCar(req: any, res: any) {
     try {
@@ -35,8 +42,8 @@ class CarController {
         pickupLocaltion_name : req.body.pickupLocaltion_name
       })
       const car = new Car( {
-        dropOf : dropNew,
-        pickUp : pickNew,
+        drop : dropNew,
+        pickup : pickNew,
         car_brand: req.body.brand,
         car_model: req.body.model,
         car_type: req.body.type,
@@ -53,7 +60,7 @@ class CarController {
       const carItem= await car.save();
       const dropLocal = await dropNew.save();
       const pickLocal = await pickNew.save();
-      let [dropOf,pickUp,cars]=await Promise.all([dropLocal,pickLocal,carItem])
+      let [drop,pickup,cars]=await Promise.all([dropLocal,pickLocal,carItem])
       if (cars){
         res.redirect("/adm/list")
       }
@@ -87,25 +94,25 @@ class CarController {
         });
         car.car_img = [...images]
       }
-          car.drop = req.body.drop;
-          car.pickup = req.body.pickUp;
-          car.car_brand= req.body.brand
-          car.car_model = req.body.model
-          car.car_type = req.body.type
-          car.car_gear= req.body.gear
-          car.car_licensePlate = req.body.licensePlate
-          car.car_year =  req.body.year
-          car.car_color = req.body.color
-          car.car_rentalPrice = req.body.rentalPrice
-          car.car_availability = req.body.availability
-          car.car_seat = req.body.seat
-          car.car_des = req.body.des
+      car.drop = req.body.drop;
+      car.pickup = req.body.pickUp;
+      car.car_brand= req.body.brand
+      car.car_model = req.body.model
+      car.car_type = req.body.type
+      car.car_gear= req.body.gear
+      car.car_licensePlate = req.body.licensePlate
+      car.car_year =  req.body.year
+      car.car_color = req.body.color
+      car.car_rentalPrice = req.body.rentalPrice
+      car.car_availability = req.body.availability
+      car.car_seat = req.body.seat
+      car.car_des = req.body.des
       await car.save();
-          if (car){
-            res.redirect('/adm/list')
-          }else {
-            res.render('notfound')
-          }
+      if (car){
+        res.redirect('/adm/list')
+      }else {
+        res.render('notfound')
+      }
     }catch (e){
       console.log(e.message)
       res.render('notfound')
@@ -121,7 +128,6 @@ class CarController {
     try {
       const car = await Car.findOne({_id : req.params.id})
       if (car){
-        console.log(car)
         await car.deleteOne({_id : req.params.id})
         res.redirect('/adm/list')
       }else {
