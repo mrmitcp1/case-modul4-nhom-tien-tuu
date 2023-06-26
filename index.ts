@@ -44,7 +44,7 @@ app.use((req: any, res: any, next: any) => {
     res.locals.userLogin = req.user;
     next();
   } else {
-    res.redirect("/login.html");
+    res.redirect("/login");
   }
 });
 app.use("/adm", localRouter);
