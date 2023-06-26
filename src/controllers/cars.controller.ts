@@ -6,8 +6,27 @@ import { User } from "../schemas/user.schema";
 
 class CarController {
   static async showAllCar(req: any, res: any) {
-    const cars = await Car.find();
-    res.render("carModelView", { data: cars });
+    let cars = [];
+    if (req.body.brand){
+       let car_brand = req.body.brand;
+        let carArr = await Car.find({car_brand});
+        cars = [...carArr]
+    }else if (req.body.seat){
+      let car_seat = req.body.seat;
+      let seatArr = await Car.find({car_seat})
+      cars = [...seatArr]
+    } else if (req.body.gear){
+      let car_gear = req.body.gear;
+      let gearArray = await Car.find({car_gear})
+      cars = [...gearArray]
+    }
+    else {
+      cars = await Car.find();
+    }
+    let carBrand = await CarController.getSearchCarByBrand(req,res)
+    let carSeat = await CarController.getSearchCarBySeat(req,res)
+    let carGear = await CarController.getSearchCarByGear(req,res)
+    res.render("carModelView", { data: cars, brandArray:carBrand,seatArray:carSeat,gearArray:carGear });
   }
 
   static async carDetail(req: any, res: any) {
@@ -184,11 +203,39 @@ class CarController {
     }
   }
 
-  static async SearchCar(req,res){
+  static async getSearchCarByBrand(req,res){
     let cars = await Car.find()
-    console.log(cars)
-    res.render("index",{cars:cars})
+    let brand = [];
+    cars.forEach((item)=>{
+      brand.push(item.car_brand)
+    })
+    return [...new Set(brand)]
   }
+
+  static async getSearchCarBySeat(req,res){
+    let cars = await Car.find()
+    let seat = [];
+    cars.forEach((item)=>{
+      seat.push((item.car_seat))
+    })
+    return[...new Set(seat)]
+  }
+
+  static async getSearchCarByGear(req,res) {
+    let cars = await Car.find()
+    let gear = [];
+    cars.forEach((item) => {
+      gear.push((item.car_gear))
+    })
+    return [...new Set(gear)]
+  }
+
+  static async searchCar(req,res){
+    let car_brand = req.body.search
+    let car = await Car.find({car_brand})
+    res.render()
+  }
+
 }
 
 export default CarController;

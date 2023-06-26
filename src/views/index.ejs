@@ -203,6 +203,7 @@
                   <h4 class="mb-0">Search a car</h4>
                 </div>
               </div>
+              <form method="post" action="">
               <div class="row booking_2 mt-4">
                 <div class="col-md-4 col-sm-6">
                   <div class="booking_2i">
@@ -210,21 +211,15 @@
                       <i class="fa fa-car me-1 col_oran"></i> Select Your Car
                       Type
                     </h6>
-                    <select class="form-select" id="example-select">
-                      <% cars.forEach((car) => { %>
-                      <option><%=car.car_brand%></option>
-                      <% }) %>
-                    </select>
                   </div>
                 </div>
                     <h6 class="text-center mb-0">
                       <a class="button pt-3 pb-3 d-block" href="#">Search</a>
                     </h6>
                   </div>
+              </form>
                 </div>
               </div>
-            </div>
-          </div>
         </section>
       </div>
     </div>

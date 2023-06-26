@@ -92,41 +92,48 @@
     <section id="model_pg" class="p_3">
       <div class="container-xl">
         <div>
-          <div class="dropdown">
-            <button
-              class="btn btn-success dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Chọn theo hãng xe
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+          <div class="dropdown"> <form method="post" enctype="multipart/form-data" id="form-brand">
+              <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onchange="submitForm()" >
+                  Chọn theo kiểu xe
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <% brandArray.forEach((item) => { %>
+                  <button class="dropdown-item" type="submit" value="<%=item%>" name="brand"><%=item%></button>
+                  <% }) %>
+                </div>
+              </div>
+            </form>
           </div>
           <div class="dropdown">
-            <button
-              class="btn btn-success dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Chọn theo số ghế
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+            <form method="post" enctype="multipart/form-data" id="form-seat">
+              <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onchange="submitForm()" >
+                  Chọn theo số ghế
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <% seatArray.forEach((item) => { %>
+                  <button class="dropdown-item" type="submit" value="<%=item%>" name="seat"><%=item%></button>
+                  <% }) %>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="dropdown"> <form method="post" enctype="multipart/form-data" id="form-gear">
+              <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onchange="submitForm()" >
+                  Chọn theo kiểu Số
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <% gearArray.forEach((item) => { %>
+                  <button class="dropdown-item" type="submit" value="<%=item%>" name="gear"><%=item%></button>
+                  <% }) %>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
+
         <div class="row model_pg1">
           <% data.forEach((item) => { %>
 
@@ -153,13 +160,6 @@
                           ><%= item.car_model %></a
                         >
                       </h4>
-                      <!-- <span class="font_12 col_yell">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                      </span> -->
                     </div>
                   </div>
                   <div class="col-md-6 col-sm-6">
@@ -397,6 +397,11 @@
           document.body.style.paddingTop = "0";
         }
       }
+      function submitForm() {
+        document.getElementById("form-brand").submit()
+        document.getElementById("form-seat").submit()
+        document.getElementById("form-gear").submit()
+      }
     </script>
   </body>
   <script
@@ -414,4 +419,9 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"
   ></script>
+  <script>
+
+  </script>
 </html>
+
+
