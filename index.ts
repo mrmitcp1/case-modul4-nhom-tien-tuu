@@ -4,10 +4,9 @@ import mongoose from "mongoose";
 import session from "express-session";
 import livereload from "connect-livereload";
 import passport from "passport";
-
 import localRouter from "./src/routers/local.router";
-
 import carRouter from "./src/routers/cars.router";
+import {rentalRouters} from "./src/routers/rental.routers";
 
 const PORT = 3333;
 const app = express();
@@ -37,6 +36,8 @@ app.use(passport.session());
 app.use('/adm',localRouter)
 app.use(carRouter);
 
+app.use("/car",rentalRouters);
+
 app.listen(PORT, () => {
-  console.log("App running on port: " + PORT);
+  console.log(`App is running at http://localhost:${PORT}/cars/list`);
 });
