@@ -38,7 +38,7 @@ class CarController {
     try {
       const dropLocal = await DropofLocaltion.find();
       const pickLocal = await PickupLocaltion.find();
-      res.render("admcarCreate", {
+      res.render("admin/admcarCreate", {
         dropLocal: dropLocal,
         pickLocal: pickLocal,
       });
