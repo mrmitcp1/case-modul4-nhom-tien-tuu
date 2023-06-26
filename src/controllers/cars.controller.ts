@@ -6,8 +6,8 @@ import { User } from "../schemas/user.schema";
 
 class CarController {
   static async showAllCar(req: any, res: any) {
-      const cars = await Car.find();
-      res.render("carModelView", { data: cars });
+    const cars = await Car.find();
+    res.render("carModelView", { data: cars });
   }
 
   static async carDetail(req: any, res: any) {
@@ -19,11 +19,18 @@ class CarController {
   }
 
   static async carComment(req: any, res: any) {
-    console.log(req.params.id);
-    console.log(req.body);
-    if (req.user) {
+    if (req.isAuthenticated()) {
       const user = await User.findOne({ _id: req.user.id });
-      console.log(user.user_name);
+      let comment = req.body;
+      console.log(comment);
+      res.redirect(`/cars/detail/${req.params.id}`);
+      const car = await Car.findByIdAndUpdate(
+        { _id: req.params.id },
+        { $push: { car_comment: comment } },
+        { new: true }
+      );
+    } else {
+      res.redirect("/login");
     }
   }
 
@@ -153,7 +160,7 @@ class CarController {
     }
   }
 
-  static async showCarForAdm(req,res) {
+  static async showCarForAdm(req, res) {
     try {
       let limit: number;
       const allCar = await Car.find();
@@ -161,15 +168,19 @@ class CarController {
       if (!req.query.limit) {
         limit = 3;
       } else {
-        limit = parseInt(req.query.limit)
+        limit = parseInt(req.query.limit);
       }
-      let totalPages = Math.ceil(allCar.length / limit)
-      let offset = (currentPage - 1) * limit
-      let cars = await Car.find().limit(limit).skip(offset)
-      res.render('admCarList', {totalPages: totalPages, currentPage: currentPage,data:cars})
-    }catch (e){
-      console.log(e.message)
-      res.render('notfound')
+      let totalPages = Math.ceil(allCar.length / limit);
+      let offset = (currentPage - 1) * limit;
+      let cars = await Car.find().limit(limit).skip(offset);
+      res.render("admCarList", {
+        totalPages: totalPages,
+        currentPage: currentPage,
+        data: cars,
+      });
+    } catch (e) {
+      console.log(e.message);
+      res.render("notfound");
     }
   }
 }
