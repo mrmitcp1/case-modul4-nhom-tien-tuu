@@ -175,6 +175,12 @@ class CarController {
       res.render('notfound')
     }
   }
+
+  static async SearchCar(req,res){
+    let cars = await Car.find()
+    console.log(cars)
+    res.render("index",{cars:cars})
+  }
 }
 
 export default CarController;
