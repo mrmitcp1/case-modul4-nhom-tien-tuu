@@ -12,6 +12,6 @@ export class Register{
             await user.save();
         }
         
-        res.redirect('/login.html')
+        res.redirect('/login')
     }
 }
