@@ -21,7 +21,7 @@ class RentalControllers {
                 path: "pickup", select: "pickupLocaltion_name"
             });
             const dropLocation = await DropofLocaltion.find();
-            res.render("bookCar", {car: dataCar, dropLocations: dropLocation})
+            res.render("bookingCar", {car: dataCar, dropLocations: dropLocation})
         } catch (err) {
             res.render("notfound")
         }
@@ -56,7 +56,7 @@ class RentalControllers {
                 const p2 = dataDropLocation.save();
                 const p3 = dataPickupLocation.save();
                 let [dataCars, dataDropLocations, dataPickupLocations] = await Promise.all([p1, p2, p3])
-                res.render("bookOrderDetail", {
+                res.render("bookingOrderDetail", {
                     car: dataCars,
                     pickupLocation: dataPickupLocations,
                     dropLocation: dataDropLocations,
