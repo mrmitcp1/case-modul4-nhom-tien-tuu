@@ -8,4 +8,13 @@ export class MainController {
     }
     res.render("index", { userState: role, userGreet: user });
   }
+  static getInfoUser(req,res){
+    let role;
+    let user;
+    if (req.user) {
+      user = req.user;
+      role = req.user.role;
+    }
+    return user.username
+  }
 }
