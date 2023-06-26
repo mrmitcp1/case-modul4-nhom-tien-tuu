@@ -9,17 +9,16 @@ class AuthController {
         res.render('auth/register')
     }
 
-    static async register(req:any, res:any) {
-        let { name, email, password ,} = req.body;
+    static async register(req: any, res: any) {
+        let { name, email, password, } = req.body;
         let user = new User({
             user_name: name,
             user_email: email,
             user_password: password,
-            user_role : 'user'
+            user_role: ''
         });
         await user.save();
         res.redirect('/login')
-    }
-
-}
+    };
+};
 export default AuthController;
