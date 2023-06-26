@@ -16,9 +16,9 @@ app.set("view engine", "ejs");
 app.set("views", "./src/views");
 const DB_URL = "mongodb://127.0.0.1:27017/case_modul4";
 mongoose
-    .connect(DB_URL)
-    .then(() => console.log("DB Connected!"))
-    .catch((error) => console.log("DB connection error:", error.message));
+  .connect(DB_URL)
+  .then(() => console.log("DB Connected!"))
+  .catch((error) => console.log("DB connection error:", error.message));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -38,19 +38,15 @@ app.use(passport.session());
 app.use(express.static('assets'));
 
 app.use(authRouter);
-
 app.use((req: any, res: any, next: any) => {
-    if (req.isAuthenticated()) {
-        res.locals.userLogin = req.user
-        next();
-    } else {
-        res.redirect('/login')
-    }
-})
-
-
+  if (req.isAuthenticated()) {
+    res.locals.userLogin = req.user;
+    next();
+  } else {
+    res.redirect("/login");
+  }
+});
 app.use(logoutRouter);
-
 app.use('/adm', localRouter)
 app.use(carRouter);
 app.use("/car", rentalRouters);
