@@ -8,8 +8,8 @@ import { router } from "./src/routers/register.router";
 import authRouter from "./src/routers/auth.router";
 
 import localRouter from "./src/routers/local.router";
-
 import carRouter from "./src/routers/cars.router";
+import {rentalRouters} from "./src/routers/rental.routers";
 
 const PORT = 3333;
 const app = express();
@@ -49,6 +49,8 @@ app.use((req: any, res: any, next: any) => {
 });
 app.use("/adm", localRouter);
 
+app.use("/car",rentalRouters);
+
 app.listen(PORT, () => {
-  console.log("App running on port: " + PORT);
+  console.log(`App is running at http://localhost:${PORT}/cars/list`);
 });

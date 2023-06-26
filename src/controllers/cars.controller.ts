@@ -31,6 +31,7 @@ class CarController {
     try {
       const dropLocal = await DropofLocaltion.find();
       const pickLocal = await PickupLocaltion.find();
+<<<<<<< HEAD
       res.render("admcarCreate", {
         dropLocal: dropLocal,
         pickLocal: pickLocal,
@@ -39,6 +40,14 @@ class CarController {
       res.render("notfound");
     }
   }
+=======
+      res.render("admcarCreate",{dropLocal:dropLocal,pickLocal:pickLocal})
+    }catch (e){
+      res.render('notfound')
+    }
+  }
+
+>>>>>>> bb80cb00f7ac1c7d9f6ed87e8b122c3ab0d10fa3
 
   static async createCar(req: any, res: any) {
     try {
@@ -112,6 +121,7 @@ class CarController {
       }
       car.drop = req.body.drop;
       car.pickup = req.body.pickUp;
+<<<<<<< HEAD
       car.car_brand = req.body.brand;
       car.car_model = req.body.model;
       car.car_type = req.body.type;
@@ -132,6 +142,28 @@ class CarController {
     } catch (e) {
       console.log(e.message);
       res.render("notfound");
+=======
+      car.car_brand= req.body.brand
+      car.car_model = req.body.model
+      car.car_type = req.body.type
+      car.car_gear= req.body.gear
+      car.car_licensePlate = req.body.licensePlate
+      car.car_year =  req.body.year
+      car.car_color = req.body.color
+      car.car_rentalPrice = req.body.rentalPrice
+      car.car_availability = req.body.availability
+      car.car_seat = req.body.seat
+      car.car_des = req.body.des
+      await car.save();
+      if (car){
+        res.redirect('/adm/list')
+      }else {
+        res.render('notfound')
+      }
+    }catch (e){
+      console.log(e.message)
+      res.render('notfound')
+>>>>>>> bb80cb00f7ac1c7d9f6ed87e8b122c3ab0d10fa3
     }
   }
 
