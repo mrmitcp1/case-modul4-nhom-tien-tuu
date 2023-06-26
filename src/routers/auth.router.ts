@@ -3,9 +3,9 @@ import passport from "../middlewares/auth.middleware";
 import AuthController from "../controllers/auth.controller";
 const authRouter = express.Router();
 
-authRouter.get('/login.html', AuthController.getFormLogin);
-authRouter.post('/login.html', passport.authenticate('local', {
-    successRedirect: '/index.html',
-    failureRedirect: '/login.html'
+authRouter.get('/login', AuthController.getFormLogin);
+authRouter.post('/login', passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login'
 }));
 export default authRouter;
