@@ -6,6 +6,5 @@ const userSchema = new Schema({
     user_phone: String,
     user_address: String,
     user_role: String,
-
 });
 export const User = model('User',userSchema)
