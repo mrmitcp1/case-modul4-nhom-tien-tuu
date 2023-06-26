@@ -3,7 +3,6 @@ import { Car } from "../schemas/car.schema";
 class CarController {
   static async showAllCar(req: any, res: any) {
     const cars = await Car.find();
-    console.log(req.user);
     res.render("carModelView", { data: cars });
   }
 
@@ -12,6 +11,7 @@ class CarController {
     const car = await Car.findOne({ _id: carId }).catch((err) => {
       console.log(err.message);
     });
+    console.log(req.user);
     res.render("carDetail", { data: car });
   }
 
