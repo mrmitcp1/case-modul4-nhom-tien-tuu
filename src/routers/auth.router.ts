@@ -14,7 +14,7 @@ authRouter.get('/', (req, res) => {
 });
 authRouter.get('/register', AuthController.getFormRegister);
 authRouter.post('/register', AuthController.register);
-authRouter.post('/login', passport.authenticate('local', { session: true, failureRedirect: '/auth/login' }), MainController.showHomePage);
+// authRouter.post('/auth/login', passport.authenticate('local', { session: true, failureRedirect: '/auth/login' }), MainController.showHomePage);
 authRouter.get('/login/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 authRouter.get("/google/callback", passport.authenticate('google'), (req, res) => {
     res.redirect('/index');

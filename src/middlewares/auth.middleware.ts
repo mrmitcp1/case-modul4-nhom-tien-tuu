@@ -26,9 +26,9 @@ passport.deserializeUser((user: any, cb) => {
     });
 });
 passport.use(new GoogleStrategy({
-        clientID: "545270950172-2pan4f2k2tlnh3iq877lm3mu3epqg92m.apps.googleusercontent.com",
-        clientSecret: "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",
-        callbackURL: "http://localhost:3333/auth/google/callback",
+        clientID: "545270950172-6usa7v6pijc5s26tpq2qanpiiif0bski.apps.googleusercontent.com",
+        clientSecret: "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",
+        callbackURL: "http://localhost:3333/google/callback",
         passReqToCallback: true
     },
     async (request, accessToken, refreshToken, profile, done) => {
@@ -41,9 +41,11 @@ passport.use(new GoogleStrategy({
                 google: {
                     id: profile.id,
                 },
-                username: profile.emails[0].value,
-                password: null
+                user_name: profile.emails[0].value,
+                user_password: null,
+                user_role : 'user'
             });
+            console.log(profile.emails);
             await newUser.save();
             return done(null, newUser);
         } catch (error) {
