@@ -4,9 +4,15 @@ import mongoose from "mongoose";
 import session from "express-session";
 import livereload from "connect-livereload";
 import passport from "passport";
+import { registeRrouter } from "./src/routers/register.router";
+import authRouter from "./src/routers/auth.router";
 import localRouter from "./src/routers/local.router";
 import carRouter from "./src/routers/cars.router";
 import {rentalRouters} from "./src/routers/rental.routers";
+import { logoutRouter } from "./src/routers/logout.router";
+import { adminRouter } from "./src/routers/admin.router";
+import { loginRouter } from "./src/routers/login.router";
+import permissionMiddleware from "./src/middlewares/permission.middleware";
 
 const PORT = 3333;
 const app = express();
@@ -33,11 +39,27 @@ app.use(
 app.use(livereload());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static('assets'));
+// app.use(adminRouter);
+app.use(registeRrouter);
+
+app.use(loginRouter)
+app.use(authRouter);
+app.use(logoutRouter);
+// app.use(permissionMiddleware);
+// app.use((req: any, res: any, next: any) => {
+//         if (req.isAuthenticated()) {
+//                 res.locals.userLogin = req.user
+//                 next();
+//         } else {
+//                 res.redirect('/login')
+//         }
+// })
 app.use('/adm',localRouter)
 app.use(carRouter);
 
 app.use("/car",rentalRouters);
 
 app.listen(PORT, () => {
-  console.log(`App is running at http://localhost:${PORT}/cars/list`);
+  console.log(`App is running at http://localhost:${PORT}/login`);
 });
