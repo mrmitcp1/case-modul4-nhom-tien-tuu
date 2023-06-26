@@ -23,6 +23,10 @@ carRouter.post(
 );
 carRouter.get("/cars/list", CarController.showAllCar);
 carRouter.get("/cars/detail/:id", CarController.carDetail);
+carRouter.get('/adm/updatecar/:id',CarController.getUpdate);
+carRouter.post('/adm/updatecar/:id',upload.array("img",10), CarController.updateCar);
+carRouter.get("/adm/list",CarController.showCarForAdm)
+carRouter.get('/adm/delete/:id',CarController.deleteCar)
 carRouter.post("/cars/detail/:id", CarController.carComment);
 carRouter.get("/adm/updatecar/:id", CarController.getUpdate);
 carRouter.post(

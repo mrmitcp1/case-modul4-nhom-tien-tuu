@@ -1,5 +1,6 @@
 import {DropofLocaltion} from "../schemas/dropoflocaltion.schema";
 import { PickupLocaltion} from "../schemas/pickuplocaltion.schema";
+import {Car} from "../schemas/car.schema";
 
 class LocalController {
     static async createLocals(req,res){
@@ -30,7 +31,19 @@ class LocalController {
         try {
             const dropLocal = await DropofLocaltion.find();
             const pickLocal = await PickupLocaltion.find();
-            res.render("listlocals",{dropLocal:dropLocal,pickLocal:pickLocal})
+            let limit : number;
+            let currentPage = req.query.page ? +req.query.page : 1;
+            if (!req.query.limit){
+                limit = 3;
+            }else {
+                limit = parseInt(req.query.limit);
+            }
+            let totalPagesDrop = Math.ceil(dropLocal.length/limit)
+            let totalPagesPick = Math.ceil(pickLocal.length/limit)
+            let offset = (currentPage - 1) * limit
+            const dropLocals = await DropofLocaltion.find().limit(limit).skip(offset)
+            const pickLocals = await PickupLocaltion.find().limit(limit).skip(offset)
+            res.render("listlocals",{dropLocal:dropLocals,pickLocal:pickLocals,totalPagesDrop:totalPagesDrop,totalPagesPick:totalPagesPick,currentPage:currentPage})
         }catch (e){
             res.render('notfound')
         }

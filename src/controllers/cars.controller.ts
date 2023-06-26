@@ -6,8 +6,8 @@ import { User } from "../schemas/user.schema";
 
 class CarController {
   static async showAllCar(req: any, res: any) {
-    const cars = await Car.find();
-    res.render("carModelView", { data: cars });
+      const cars = await Car.find();
+      res.render("carModelView", { data: cars });
   }
 
   static async carDetail(req: any, res: any) {
@@ -39,7 +39,6 @@ class CarController {
       res.render("notfound");
     }
   }
-
   static async createCar(req: any, res: any) {
     try {
       const images = [];
@@ -151,6 +150,26 @@ class CarController {
       }
     } catch (e) {
       res.render("notfound");
+    }
+  }
+
+  static async showCarForAdm(req,res) {
+    try {
+      let limit: number;
+      const allCar = await Car.find();
+      let currentPage = req.query.page ? +req.query.page : 1;
+      if (!req.query.limit) {
+        limit = 3;
+      } else {
+        limit = parseInt(req.query.limit)
+      }
+      let totalPages = Math.ceil(allCar.length / limit)
+      let offset = (currentPage - 1) * limit
+      let cars = await Car.find().limit(limit).skip(offset)
+      res.render('admCarList', {totalPages: totalPages, currentPage: currentPage,data:cars})
+    }catch (e){
+      console.log(e.message)
+      res.render('notfound')
     }
   }
 }
