@@ -27,9 +27,7 @@
         <section id="header">
           <nav class="navbar navbar-expand-md navbar-light" id="navbar_sticky">
             <div class="container-xl">
-              <a
-                class="navbar-brand fs-3 p-0 fw-bold text-white"
-                href="index.html"
+              <a class="navbar-brand fs-3 p-0 fw-bold text-white" href="/index"
                 ><i class="fa fa-car col_oran me-1 fs-2 align-middle"></i> CAR
                 <br />
                 <span class="fs-5 span_1">Lease</span></a
@@ -48,74 +46,12 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-0">
                   <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="index.html"
+                    <a class="nav-link" aria-current="page" href="/index"
                       >Home</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="about.html">About </a>
-                  </li>
-                  <li class="nav-item">
                     <a class="nav-link" href="models.html">Vehicle Models </a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a
-                      class="nav-link dropdown-toggle active"
-                      href="#"
-                      id="navbarDropdown"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Blog
-                    </a>
-                    <ul
-                      class="dropdown-menu drop_1"
-                      aria-labelledby="navbarDropdown"
-                    >
-                      <li>
-                        <a class="dropdown-item" href="blog.html"> Blog</a>
-                      </li>
-                      <li>
-                        <a
-                          class="dropdown-item border-0"
-                          href="blog_detail.html"
-                        >
-                          <%= data.car_model %> Detail</a
-                        >
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="team.html">Team</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a
-                      class="nav-link dropdown-toggle"
-                      href="#"
-                      id="navbarDropdown"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Pages
-                    </a>
-                    <ul
-                      class="dropdown-menu drop_1"
-                      aria-labelledby="navbarDropdown"
-                    >
-                      <li>
-                        <a class="dropdown-item" href="login.html"> Login</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item border-0" href="register.html">
-                          Register</a
-                        >
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
                   </li>
                 </ul>
                 <ul class="navbar-nav mb-0 ms-auto">
@@ -213,6 +149,83 @@
                 </div>
               </div>
             </div>
+
+            <div class="blog_1rdt3 mt-4 bg_light p-4">
+              <div class="blog_1rdt3it row">
+                <div class="col-md-12">
+                  <h2 class="mb-4">Bình luận:</h2>
+                </div>
+              </div>
+              <div class="blog_1rdt3i row">
+                <div class="col-md-2 col-sm-2">
+                  <div class="blog_1rdt3il">
+                    <img
+                      src="img/33.jpg"
+                      class="w-100 rounded-circle"
+                      alt="abc"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-10 col-sm-10">
+                  <div class="blog_1rdt3il">
+                    <h4>
+                      Eget Nulla
+                      <span class="pull-right"
+                        ><a
+                          class="button_1 pt-2 pb-2 ps-3 pe-3 font_14 fw-normal"
+                          href="#"
+                          >Reply</a
+                        ></span
+                      >
+                    </h4>
+                    <h6 class="font_14 mt-3">
+                      <a href="#"
+                        ><i class="fa fa-calendar col_oran me-1"></i> 03 Feb,
+                        2022</a
+                      >
+                      <a href="#"
+                        ><i class="fa fa-user col_oran me-1 ms-3"></i> Admin</a
+                      >
+                      <a href="#"
+                        ><i class="fa fa-comments col_oran me-1 ms-3"></i> 3
+                        Comments</a
+                      >
+                    </h6>
+                    <p class="mb-0 font_14">
+                      Lorem Ipsum has been the industry’s standard dummy text
+                      ever since the 1500s, when an unknown type specimen book.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <hr />
+              <form action="/cars/detail/<%= data._id %>" method="post">
+                <div class="blog_1rdt3it row">
+                  <div class="col-md-12">
+                    <h2 class="mb-4">Gửi bình luận:</h2>
+                  </div>
+                </div>
+                <div class="blog_1rdt3i2 row mt-3">
+                  <div class="col-md-12">
+                    <div class="blog_1rdt3i2l">
+                      <textarea
+                        placeholder="Message"
+                        class="form-control form_text"
+                        name="comment"
+                      ></textarea>
+                      <h6 class="mb-0 mt-3">
+                        <button type="submit" class="button">
+                          Post Comment <i class="fa fa-check-circle ms-1"></i>
+                        </button>
+                        <!-- <a class="button" href="#"
+                          >Post Comment <i class="fa fa-check-circle ms-1"></i>
+                        </a> -->
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
           <div class="col-md-4">
             <div class="blog_1l2 mt-4 p-3 clearfix">
@@ -291,7 +304,7 @@
           <div class="col-md-4">
             <div class="footer_1i">
               <h4>
-                <a href="index.html"
+                <a href="/index"
                   ><i class="fa fa-car col_oran"></i> CAR
                   <span class="fw-normal"></span>Lease</a
                 >

@@ -14,7 +14,7 @@ class Register {
         if (user) {
             await user.save();
         }
-        res.redirect('/login.html');
+        res.redirect('/login');
     }
 }
 exports.Register = Register;

@@ -8,17 +8,17 @@ const express_1 = __importDefault(require("express"));
 const register_controller_1 = require("../controllers/register.controller");
 const auth_middleware_1 = __importDefault(require("../middlewares/auth.middleware"));
 exports.router = express_1.default.Router();
-exports.router.get('/index.html', (req, res) => {
-    res.render('index');
+exports.router.get("/index", (req, res) => {
+    res.render("index");
 });
-exports.router.get('/register.html', (req, res) => {
-    res.render('register');
+exports.router.get("/register", (req, res) => {
+    res.render("register");
 });
-exports.router.post('/register.html', register_controller_1.Register.getRegister);
-exports.router.get('/login.html', (req, res) => {
-    res.render('login');
+exports.router.post("/register", register_controller_1.Register.getRegister);
+exports.router.get("/login", (req, res) => {
+    res.render("login");
 });
-exports.router.post('/login.html', (req, res, next) => {
+exports.router.post("/login", (req, res, next) => {
     auth_middleware_1.default.authenticate("local", (err, user) => {
         if (err) {
             return next(err);
@@ -27,7 +27,7 @@ exports.router.post('/login.html', (req, res, next) => {
             return res.send("Wrong email or password");
         }
         req.login(user, () => {
-            res.redirect('/index.html');
+            res.redirect("/index");
         });
     })(req, res, next);
 });
