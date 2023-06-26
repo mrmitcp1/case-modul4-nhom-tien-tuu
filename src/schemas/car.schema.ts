@@ -18,7 +18,7 @@ const carSchema = new Schema({
   car_comment: [
     {
       text: String,
-      createdDate: { type: Date, default: Date.now },
+      created: { type: Date, default: Date.now },
       postedBy: { type: Schema.Types.ObjectId, ref: "User" },
     },
   ],
