@@ -15,5 +15,12 @@ const carSchema = new Schema({
   car_img: [String],
   car_seat: Number,
   car_des: String,
+  car_comment: [
+    {
+      text: String,
+      createdDate: { type: Date, default: Date.now },
+      postedBy: { type: Schema.Types.ObjectId, ref: "User" },
+    },
+  ],
 });
 export const Car = model("Cars", carSchema);

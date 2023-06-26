@@ -35,8 +35,6 @@ class RentalControllers {
             path: "pickup",
             select: "pickupLocaltion_name",
         });
-
-        // Tính số ngày thuê
         // @ts-ignore
         const numberOfDays: number = Math.ceil((dropoffDate - pickupDate) / (1000 * 60 * 60 * 24));
         let totalCost = numberOfDays * dataCar.car_rentalPrice;
@@ -56,10 +54,6 @@ class RentalControllers {
         const p2 = dataDropLocation.save();
         const p3 = dataPickupLocation.save();
         let [dataCars, dataDropLocations, dataPickupLocations] = await Promise.all([p1, p2, p3])
-        // console.log(dataCars)
-        // console.log(dataPickupLocations)
-        // console.log(dataDropLocations)
-
         res.render("bookOrderDetail", {
             car: dataCars,
             pickupLocation: dataPickupLocations,
