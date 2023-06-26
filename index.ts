@@ -13,6 +13,7 @@ import carRouter from "./src/routers/cars.router";
 import { logoutRouter } from "./src/routers/logout.router";
 import { adminRouter } from "./src/routers/admin.router";
 import { loginRouter } from "./src/routers/login.router";
+import permissionMiddleware from "./src/middlewares/permission.middleware";
 
 const PORT = 3333;
 const app = express();
@@ -42,9 +43,11 @@ app.use(passport.session());
 app.use(express.static('assets'));
 // app.use(adminRouter);
 app.use(registeRrouter);
+
 app.use(loginRouter)
 app.use(authRouter);
-app.use(logoutRouter)
+app.use(logoutRouter);
+app.use(permissionMiddleware);
 app.use((req: any, res: any, next: any) => {
         if (req.isAuthenticated()) {
                 res.locals.userLogin = req.user
