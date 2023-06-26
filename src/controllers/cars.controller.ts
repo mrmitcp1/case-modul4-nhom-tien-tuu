@@ -31,9 +31,12 @@ class CarController {
 
   static async carDetail(req: any, res: any) {
     const carId = req.params.id;
-    const car = await Car.findOne({ _id: carId }).catch((err) => {
-      console.log(err.message);
-    });
+    // const car = await Car.findOne({ _id: carId }).catch((err) => {
+    //   console.log(err.message);
+    // });
+    const car = await Car.findById({ _id: req.params.id }).populate(
+      "car_comment.postedBy"
+    );
     res.render("carDetail", { data: car });
   }
 
@@ -41,7 +44,7 @@ class CarController {
     if (req.isAuthenticated()) {
       const user = await User.findOne({ _id: req.user.id });
       let comment = req.body;
-      console.log(comment);
+      comment.postedBy = user;
       res.redirect(`/cars/detail/${req.params.id}`);
       const car = await Car.findByIdAndUpdate(
         { _id: req.params.id },
