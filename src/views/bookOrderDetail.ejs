@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Car Lease</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/css/global.css" rel="stylesheet"/>
+    <link href="/css/index.css" rel="stylesheet"/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+            rel="stylesheet"
+    />
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<br/>
+<div class="container booking_m clearfix bg-white">
+    <br/>
+    <h1 style="text-align: center">Chọn xe thành công!</h1>
+    <br/>
+    <h5 class="mb-3"><i class="fa fa-car me-1 col_oran"></i> Xe đã đặt: <%= car.car_model %>
+    </h5>
+    <br/>
+    <h5 class="mb-3">
+        <i class="fa fa-map-marker me-1 col_oran"></i> Địa điểm nhận xe: <%= pickupLocation.pickupLocaltion_name%>
+    </h5>
+    <br/>
+    <h5 class="mb-3">
+        <i class="fa fa-map-marker me-1 col_oran"></i> Địa điểm trả xe: <%= dropLocation.dropofLocaltion_name%>
+    </h5>
+    <br/>
+    <h5 class="mb-3">
+        <i class="fa fa-clock-o me-1 col_oran"></i> Thời gian nhận xe: <%= rentalDetail.datePickup%>
+    </h5>
+    <br/>
+    <h5 class="mb-3">
+        <i class="fa fa-clock-o me-1 col_oran"></i> Thời gian trả xe: <%= rentalDetail.dateDrop%>
+    </h5>
+    <br/>
+    <h5 class="mb-3">
+        <i class="fa fa-dollar me-1 col_oran"></i> Số tiền phải trả: <%= rentalDetail.total_cost.toLocaleString()%> $
+    </h5>
+    <br/>
+    <div class="booking_2i">
+        <h6 class="text-center mb-0">
+            <a class="button pt-3 pb-3 d-block" href="#">Gửi yêu cầu đặt xe</a>
+        </h6>
+    </div>
+</div>
+
+<script>
+    window.onscroll = function () {
+        myFunction();
+    };
+
+    var navbar_sticky = document.getElementById("navbar_sticky");
+    var sticky = navbar_sticky.offsetTop;
+    var navbar_height = document.querySelector(".navbar").offsetHeight;
+
+    function myFunction() {
+        if (window.pageYOffset >= sticky + navbar_height) {
+            navbar_sticky.classList.add("sticky");
+            document.body.style.paddingTop = navbar_height + "px";
+        } else {
+            navbar_sticky.classList.remove("sticky");
+            document.body.style.paddingTop = "0";
+        }
+    }
+</script>
+</body>
+</html>
