@@ -1,12 +1,12 @@
 import { Car } from "../schemas/car.schema";
 import {DropofLocaltion} from "../schemas/dropoflocaltion.schema";
 import {PickupLocaltion} from "../schemas/pickuplocaltion.schema";
-import e from "express";
+import {query} from "express";
 
 class CarController {
   static async showAllCar(req: any, res: any) {
-    const cars = await Car.find();
-    res.render("carModelView", { data: cars });
+      const cars = await Car.find();
+      res.render("carModelView", { data: cars });
   }
 
   static async carDetail(req: any, res: any) {
@@ -119,11 +119,6 @@ class CarController {
     }
   }
 
-  static async showAllCarForAdm(req: any, res: any) {
-    const cars = await Car.find();
-    res.render("admCarList", { data: cars });
-  }
-
   static async deleteCar(req,res){
     try {
       const car = await Car.findOne({_id : req.params.id})
@@ -134,6 +129,26 @@ class CarController {
         res.render('notfound')
       }
     }catch (e){
+      res.render('notfound')
+    }
+  }
+
+  static async showCarForAdm(req,res) {
+    try {
+      let limit: number;
+      const allCar = await Car.find();
+      let currentPage = req.query.page ? +req.query.page : 1;
+      if (!req.query.limit) {
+        limit = 3;
+      } else {
+        limit = parseInt(req.query.limit)
+      }
+      let totalPages = Math.ceil(allCar.length / limit)
+      let offset = (currentPage - 1) * limit
+      let cars = await Car.find().limit(limit).skip(offset)
+      res.render('admCarList', {totalPages: totalPages, currentPage: currentPage,data:cars})
+    }catch (e){
+      console.log(e.message)
       res.render('notfound')
     }
   }
