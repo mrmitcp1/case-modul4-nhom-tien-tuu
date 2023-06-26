@@ -60,7 +60,7 @@ class CarController {
     try {
       const dropLocal = await DropofLocaltion.find();
       const pickLocal = await PickupLocaltion.find();
-      res.render("admcarCreate", {
+      res.render("admin/admcarCreate", {
         dropLocal: dropLocal,
         pickLocal: pickLocal,
       });
@@ -117,7 +117,7 @@ class CarController {
     try {
       const car = await Car.findOne({ _id: req.params.id });
       if (car) {
-        res.render("admcarUpdate", { car: car });
+        res.render("admin/admcarUpdate", { car: car });
       } else {
         res.render("notfound");
       }
@@ -165,7 +165,7 @@ class CarController {
 
   static async showAllCarForAdm(req: any, res: any) {
     const cars = await Car.find();
-    res.render("admCarList", { data: cars });
+    res.render("admin/admCarList", { data: cars });
   }
 
   static async deleteCar(req, res) {
@@ -195,7 +195,7 @@ class CarController {
       let totalPages = Math.ceil(allCar.length / limit);
       let offset = (currentPage - 1) * limit;
       let cars = await Car.find().limit(limit).skip(offset);
-      res.render("admCarList", {
+      res.render("admin/admCarList", {
         totalPages: totalPages,
         currentPage: currentPage,
         data: cars,
