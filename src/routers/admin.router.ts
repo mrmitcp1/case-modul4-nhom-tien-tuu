@@ -1,7 +1,10 @@
 import express from 'express';
 import permissionMiddleware from '../middlewares/permission.middleware'
+import {MainController} from "../controllers/main.controller";
 export const adminRouter = express.Router();
 adminRouter.use(permissionMiddleware);
-adminRouter.get('/admin', (req, res) => {
-    res.render('index')
+adminRouter.get('/admin/home', (req, res) => {
+    let username = MainController.getInfoUser(req,res)
+    res.render('admin/dashboard', {username})
 });
+
