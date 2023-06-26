@@ -52,5 +52,5 @@ app.use(carRouter);
 app.use("/car", rentalRouters);
 
 app.listen(PORT, () => {
-    console.log(`App is running at http://localhost:${PORT}/login`);
+  console.log(`App is running at http://localhost:${PORT}/index`);
 });
