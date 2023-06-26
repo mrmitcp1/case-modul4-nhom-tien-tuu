@@ -39,8 +39,6 @@ class CarController {
       res.render("notfound");
     }
   }
-
-
   static async createCar(req: any, res: any) {
     try {
       const images = [];
@@ -133,7 +131,6 @@ class CarController {
     } catch (e) {
       console.log(e.message);
       res.render("notfound");
-
     }
   }
 
