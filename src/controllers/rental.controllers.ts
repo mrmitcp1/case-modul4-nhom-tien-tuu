@@ -13,7 +13,6 @@ const storage = multer.diskStorage({
         cb(null, file.originalname);
     },
 });
-const upload = multer({storage: storage});
 
 class RentalControllers {
     static async getFormBookCar(req: any, res: any) {
@@ -36,8 +35,6 @@ class RentalControllers {
             path: "pickup",
             select: "pickupLocaltion_name",
         });
-
-// Tính số ngày thuê
         // @ts-ignore
         const numberOfDays: number = Math.ceil((dropoffDate - pickupDate) / (1000 * 60 * 60 * 24));
         let totalCost = numberOfDays * dataCar.car_rentalPrice;
@@ -48,9 +45,7 @@ class RentalControllers {
             dateDrop: dateDropof,
             total_cost: totalCost,
         })
-        // console.log(dataPickupLocation)
-        // console.log(dataDropLocation)
-        // console.log(newRentalDetail)
+
         dataCar.car_availability = "unavailable";
         dataCar.car_model = nameCarSelect;
         dataDropLocation.dropofLocaltion_name = dropofLocation;
@@ -59,10 +54,6 @@ class RentalControllers {
         const p2 = dataDropLocation.save();
         const p3 = dataPickupLocation.save();
         let [dataCars, dataDropLocations, dataPickupLocations] = await Promise.all([p1, p2, p3])
-        // console.log(dataCars)
-        // console.log(dataPickupLocations)
-        // console.log(dataDropLocations)
-
         res.render("bookOrderDetail", {
             car: dataCars,
             pickupLocation: dataPickupLocations,
@@ -70,7 +61,6 @@ class RentalControllers {
             rentalDetail: newRentalDetail,
         })
     }
-
 }
 
 export default RentalControllers;

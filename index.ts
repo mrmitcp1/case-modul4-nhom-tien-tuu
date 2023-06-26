@@ -4,12 +4,11 @@ import mongoose from "mongoose";
 import session from "express-session";
 import livereload from "connect-livereload";
 import passport from "passport";
-import { router } from "./src/routers/register.router";
-import authRouter from "./src/routers/auth.router";
-
 import localRouter from "./src/routers/local.router";
 import carRouter from "./src/routers/cars.router";
 import {rentalRouters} from "./src/routers/rental.routers";
+import {logoutRouter} from "./src/routers/logout.router";
+import {authRouter} from "./src/routers/auth.router";
 
 const PORT = 3333;
 const app = express();
@@ -21,23 +20,23 @@ mongoose
   .then(() => console.log("DB Connected!"))
   .catch((error) => console.log("DB connection error:", error.message));
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static("./public"));
 app.use(express.static("./assets"));
 app.use(
-  session({
-    secret: "keyboard cat",
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false },
-  })
+    session({
+        secret: "keyboard cat",
+        resave: false,
+        saveUninitialized: true,
+        cookie: {secure: false},
+    })
 );
 app.use(livereload());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(carRouter);
-app.use(router);
+app.use(express.static('assets'));
+
 app.use(authRouter);
 app.use((req: any, res: any, next: any) => {
   if (req.isAuthenticated()) {
@@ -47,9 +46,10 @@ app.use((req: any, res: any, next: any) => {
     res.redirect("/login");
   }
 });
-app.use("/adm", localRouter);
-
-app.use("/car",rentalRouters);
+app.use(logoutRouter);
+app.use('/adm', localRouter)
+app.use(carRouter);
+app.use("/car", rentalRouters);
 
 app.listen(PORT, () => {
   console.log(`App is running at http://localhost:${PORT}/index`);
