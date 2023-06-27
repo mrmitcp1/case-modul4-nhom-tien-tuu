@@ -45,7 +45,6 @@ passport.use(new GoogleStrategy({
                 user_password: null,
                 user_role : 'user'
             });
-            console.log(profile.emails);
             await newUser.save();
             return done(null, newUser);
         } catch (error) {
