@@ -110,6 +110,9 @@
                   name="password"
                   placeholder="Your Password"
                 />
+                <% if(alertUsernameExisted) { %>
+                      <p>Account already exists</p>
+                        <% } %>
                 <div class="d-flex justify-content-between mt-4">
                   <div class="form-check">
                     <input
@@ -126,7 +129,6 @@
                 </div>
                 <h6 class="mt-4 mb-0">
                   <button
-                    onclick="return confirm('You have successfully created an account')"
                     href="/login.html"
                     class="btn btn-danger"
                     class="button"
