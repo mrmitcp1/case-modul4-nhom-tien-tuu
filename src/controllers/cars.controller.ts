@@ -109,11 +109,11 @@ class CarController {
   }
   static async createCar(req: any, res: any) {
     try {
-      const images = [];
-      let carImages = req.files;
-      carImages.forEach((item) => {
-        images.push(item.originalname);
-      });
+      let images =[]
+      const arrImg = req.body.image.slice(0, -1).split(';')
+      for (let i = 0; i < arrImg.length; i++) {
+        images.push(arrImg[i])
+      }
       const dropNew = new DropofLocaltion({
         dropofLocaltion_name: req.body.dropofLocaltion_name,
       });
