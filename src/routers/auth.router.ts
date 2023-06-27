@@ -17,6 +17,8 @@ authRouter.get("/", (req, res) => {
   res.redirect("/index");
 });
 authRouter.get("/user", UserController.displayUserPage);
+authRouter.get("/user/edit", UserController.displayUserEditPage);
+authRouter.post("/user/edit", UserController.updateUserInfo);
 authRouter.get("/register", AuthController.getFormRegister);
 authRouter.post("/register", AuthController.register);
 // authRouter.post('/auth/login', passport.authenticate('local', { session: true, failureRedirect: '/auth/login' }), MainController.showHomePage);

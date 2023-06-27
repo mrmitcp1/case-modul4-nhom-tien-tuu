@@ -17,20 +17,6 @@ export class MainController {
         role = userInfo.user_role;
 
       }
-      if (req.user) {
-        if (req.user.username) {
-          user = req.user;
-          role = req.user.role;
-        } else {
-          let userInfo = await User.findOne({_id: req.user.id});
-          user = {
-            id: userInfo._id,
-            username: userInfo.user_name,
-            role: userInfo.user_role,
-          };
-          role = userInfo.user_role;
-        }
-      }
     }
     res.render("index", {userState: role, userGreet: user});
   }
