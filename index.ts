@@ -54,5 +54,5 @@ app.use(carRouter);
 app.use(adminRouter);
 
 app.listen(PORT, () => {
-  console.log(`App is running at http://localhost:${PORT}/index`);
+  console.log(`App is running at http://localhost:${PORT}/login`);
 });
