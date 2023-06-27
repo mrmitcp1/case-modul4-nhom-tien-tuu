@@ -11,7 +11,7 @@ class UserController {
         .populate("user_id")
         .populate("car_id");
 
-      // bổ sung thêm code!
+      console.log(rentalBill);
 
       res.render("userdetail", { user: user });
     } else {
