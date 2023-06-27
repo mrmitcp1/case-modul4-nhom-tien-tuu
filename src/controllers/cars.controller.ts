@@ -55,7 +55,7 @@ class CarController {
 
   static async carDetail(req: any, res: any) {
     const carId = req.params.id;
-    const car = await Car.findById({ _id: req.params.id }).populate(
+    const car : any = await Car.findById({ _id: req.params.id }).populate(
       "car_comment.postedBy"
     );
 
