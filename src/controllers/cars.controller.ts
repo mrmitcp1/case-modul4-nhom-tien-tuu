@@ -98,10 +98,20 @@ class CarController {
   static async showCreateForm(req: any, res: any) {
     try {
       const dropLocal = await DropofLocaltion.find();
+      let dropLocation =[];
+      dropLocal.forEach((item=>{
+        dropLocation.push(item.dropofLocaltion_name)
+      }))
+      let dropLocationOfCar = [...new Set(dropLocation)]
       const pickLocal = await PickupLocaltion.find();
+      let pickLocation =[];
+      pickLocal.forEach((item=>{
+        pickLocation.push(item.pickupLocaltion_name)
+      }))
+      let pickLocationOfCar = [...new Set(pickLocation)]
       res.render("admin/admcarCreate", {
-        dropLocal: dropLocal,
-        pickLocal: pickLocal,
+        dropLocal: dropLocationOfCar,
+        pickLocal: pickLocationOfCar,
       });
     } catch (e) {
       res.render("notfound");
