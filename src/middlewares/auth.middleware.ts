@@ -38,7 +38,7 @@ passport.use(
     },
     async (request, accessToken, refreshToken, profile, done) => {
         try {
-            let existingUser = await User.findOne({ 'google.id': profile.id });
+            let existingUser = await User.findOne({'google.id': profile.id});
             if (existingUser) {
                 return done(null, existingUser);
             }
@@ -48,31 +48,17 @@ passport.use(
                 },
                 user_name: profile.emails[0].value,
                 user_password: null,
-                user_role : 'user'
+                user_role: 'user'
             });
             await newUser.save();
             return done(null, newUser);
         } catch (error) {
             return done(null, false)
-      try {
-        let existingUser = await User.findOne({ "google.id": profile.id });
-        if (existingUser) {
-          return done(null, existingUser);
         }
-        const newUser = new User({
-          google: {
-            id: profile.id,
-          },
-          user_name: profile.emails[0].value,
-          user_password: null,
-          user_role: "user",
-        });
-        await newUser.save();
-        return done(null, newUser);
-      } catch (error) {
-        return done(null, false);
-      }
     }
   )
-);
-export default passport;
+)
+
+
+
+export default passport
