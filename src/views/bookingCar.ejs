@@ -190,7 +190,8 @@
                                     <div class="booking_2i1 row">
                                         <div class="col-md-8">
                                             <div class="booking_2i1l">
-                                                <input class="form-control" id="example-date" type="datetime-local" name="datePickup">
+                                                <input class="form-control" id="datePickup" type="datetime-local"
+                                                       name="datePickup" onchange="validateDates()">
                                             </div>
                                         </div>
                                     </div>
@@ -202,7 +203,8 @@
                                     <div class="booking_2i1 row">
                                         <div class="col-md-8">
                                             <div class="booking_2i1l">
-                                                <input class="form-control" id="example-date" type="datetime-local" name="dateDropof">
+                                                <input class="form-control" id="dateDropof" type="datetime-local"
+                                                       name="dateDropof" onchange="validateDates()">
                                             </div>
                                         </div>
                                     </div>
@@ -211,12 +213,16 @@
                             <div class="col-md-4 col-sm-12">
                                 <div class="booking_2i">
                                     <h6 class="mb-3"><i class="fa fa-info me-1 col_oran"></i></h6>
-                                    <h6 class="text-center mb-0"><button class="button pt-3 pb-3 d-block" type="submit">Chi
-                                            tiết đặt xe </button>
+                                    <h6 class="text-center mb-0">
+                                        <button class="button pt-3 pb-3 d-block" type="submit">Chi
+                                            tiết đặt xe
+                                        </button>
                                     </h6>
                                 </div>
                             </div>
                         </div>
+
+                        <small id="validateDateMessage"></small>
                     </div>
                 </form>
             </div>
@@ -316,6 +322,27 @@
     }
 </script>
 
-</body>
+<script>
+    function validateDates() {
+        const datePickupInput = document.getElementById("datePickup");
+        const dateDropofInput = document.getElementById("dateDropof");
+        const pickupDate = new Date(datePickupInput.value);
+        const dropofDate = new Date(dateDropofInput.value);
+        const today = new Date();
 
+        if (pickupDate < today) {
+            document.getElementById("validateDateMessage").innerHTML = "Ngày thuê xe phải sau ngày hiện tại.";
+            datePickupInput.value = "";
+            return;
+        }
+        if (dropofDate <= pickupDate) {
+            document.getElementById("validateDateMessage").innerHTML = "Ngày trả xe phải sau ngày thuê xe.";
+            dateDropofInput.value = "";
+            return;
+        }
+        document.getElementById("validateDateMessage").innerHTML = "Ngày bạn chọn phù hợp."
+    }
+</script>
+
+</body>
 </html>
