@@ -1,9 +1,18 @@
 import { User } from "../schemas/user.schema";
+import { RentalDetail } from "../schemas/rentaldetail.schema";
 
 class UserController {
   static async displayUserPage(req: any, res: any) {
     if (req.user) {
       const user = req.user;
+      const rentalBill = await RentalDetail.find({
+        user_id: req.user.id,
+      })
+        .populate("user_id")
+        .populate("car_id");
+
+      console.log(rentalBill);
+
       res.render("userdetail", { user: user });
     } else {
       res.redirect("/index");
