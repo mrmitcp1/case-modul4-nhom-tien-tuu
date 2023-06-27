@@ -20,7 +20,7 @@
           <label for="exampleFormControlSelect1">Địa điểm nhận xe</label>
           <select class="form-control" name="pickupLocaltion_name">
             <% pickLocal.forEach((pick) => { %>
-            <option><%=pick.pickupLocaltion_name%></option>
+            <option><%=pick%></option>
             <% }) %>
           </select>
         </div>
@@ -28,7 +28,7 @@
           <label for="exampleFormControlSelect1">Địa điểm trả xe</label>
           <select class="form-control" name="dropofLocaltion_name">
             <% dropLocal.forEach((drop) => { %>
-            <option><%=drop.dropofLocaltion_name%></option>
+            <option><%=drop%></option>
             <% }) %>
           </select>
         </div>
