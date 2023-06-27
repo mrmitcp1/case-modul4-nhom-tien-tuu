@@ -602,3 +602,14 @@ pre {
 .book-btn {
   width: 100%;
 }
+
+.btn-user {
+  border: 1px solid #ff4d30;
+  width: 100%;
+  padding: 16px;
+}
+
+.btn-user:active,
+.btn-user:hover {
+  border: 1px solid #ff4d30;
+}

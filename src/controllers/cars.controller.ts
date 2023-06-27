@@ -7,37 +7,76 @@ import { User } from "../schemas/user.schema";
 class CarController {
   static async showAllCar(req: any, res: any) {
     let cars = [];
-    if (req.body.brand){
-       let car_brand = req.body.brand;
-        let carArr = await Car.find({car_brand});
-        cars = [...carArr]
-    }else if (req.body.seat){
+    if (req.body.brand) {
+      let car_brand = req.body.brand;
+      let carArr = await Car.find({ car_brand });
+      cars = [...carArr];
+    } else if (req.body.seat) {
       let car_seat = req.body.seat;
-      let seatArr = await Car.find({car_seat})
-      cars = [...seatArr]
-    } else if (req.body.gear){
+      let seatArr = await Car.find({ car_seat });
+      cars = [...seatArr];
+    } else if (req.body.gear) {
       let car_gear = req.body.gear;
-      let gearArray = await Car.find({car_gear})
-      cars = [...gearArray]
-    }
-    else {
+      let gearArray = await Car.find({ car_gear });
+      cars = [...gearArray];
+    } else {
       cars = await Car.find();
     }
-    let carBrand = await CarController.getSearchCarByBrand(req,res)
-    let carSeat = await CarController.getSearchCarBySeat(req,res)
-    let carGear = await CarController.getSearchCarByGear(req,res)
-    res.render("carModelView", { data: cars, brandArray:carBrand,seatArray:carSeat,gearArray:carGear });
+    let carBrand = await CarController.getSearchCarByBrand(req, res);
+    let carSeat = await CarController.getSearchCarBySeat(req, res);
+    let carGear = await CarController.getSearchCarByGear(req, res);
+
+    let role;
+    let user;
+    if (req.user) {
+      if (req.user.username) {
+        user = req.user;
+        role = req.user.role;
+      } else {
+        let userInfo = await User.findOne({ _id: req.user.id });
+        user = {
+          id: userInfo._id,
+          username: userInfo.user_name,
+          role: userInfo.user_role,
+        };
+        role = userInfo.user_role;
+      }
+    }
+
+    res.render("carModelView", {
+      data: cars,
+      brandArray: carBrand,
+      seatArray: carSeat,
+      gearArray: carGear,
+      userState: role,
+      userGreet: user,
+    });
   }
 
   static async carDetail(req: any, res: any) {
     const carId = req.params.id;
-    // const car = await Car.findOne({ _id: carId }).catch((err) => {
-    //   console.log(err.message);
-    // });
     const car = await Car.findById({ _id: req.params.id }).populate(
       "car_comment.postedBy"
     );
-    res.render("carDetail", { data: car });
+
+    let role;
+    let user;
+    if (req.user) {
+      if (req.user.username) {
+        user = req.user;
+        role = req.user.role;
+      } else {
+        let userInfo = await User.findOne({ _id: req.user.id });
+        user = {
+          id: userInfo._id,
+          username: userInfo.user_name,
+          role: userInfo.user_role,
+        };
+        role = userInfo.user_role;
+      }
+    }
+
+    res.render("carDetail", { data: car, userState: role, userGreet: user });
   }
 
   static async carComment(req: any, res: any) {
@@ -206,39 +245,38 @@ class CarController {
     }
   }
 
-  static async getSearchCarByBrand(req,res){
-    let cars = await Car.find()
+  static async getSearchCarByBrand(req, res) {
+    let cars = await Car.find();
     let brand = [];
-    cars.forEach((item)=>{
-      brand.push(item.car_brand)
-    })
-    return [...new Set(brand)]
+    cars.forEach((item) => {
+      brand.push(item.car_brand);
+    });
+    return [...new Set(brand)];
   }
 
-  static async getSearchCarBySeat(req,res){
-    let cars = await Car.find()
+  static async getSearchCarBySeat(req, res) {
+    let cars = await Car.find();
     let seat = [];
-    cars.forEach((item)=>{
-      seat.push((item.car_seat))
-    })
-    return[...new Set(seat)]
+    cars.forEach((item) => {
+      seat.push(item.car_seat);
+    });
+    return [...new Set(seat)];
   }
 
-  static async getSearchCarByGear(req,res) {
-    let cars = await Car.find()
+  static async getSearchCarByGear(req, res) {
+    let cars = await Car.find();
     let gear = [];
     cars.forEach((item) => {
-      gear.push((item.car_gear))
-    })
-    return [...new Set(gear)]
+      gear.push(item.car_gear);
+    });
+    return [...new Set(gear)];
   }
 
-  static async searchCar(req,res){
-    let car_brand = req.body.search
-    let car = await Car.find({car_brand})
-    res.render()
+  static async searchCar(req, res) {
+    let car_brand = req.body.search;
+    let car = await Car.find({ car_brand });
+    res.render();
   }
-
 }
 
 export default CarController;
