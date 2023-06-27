@@ -24,7 +24,7 @@ class LocalController {
     }
 
     static async getCreateLocal(req,res){
-        await res.render('admaddlocals')
+        await res.render('admin/admaddlocals')
     }
 
     static async getListLocal(req,res){
@@ -43,7 +43,7 @@ class LocalController {
             let offset = (currentPage - 1) * limit
             const dropLocals = await DropofLocaltion.find().limit(limit).skip(offset)
             const pickLocals = await PickupLocaltion.find().limit(limit).skip(offset)
-            res.render("listlocals",{dropLocal:dropLocals,pickLocal:pickLocals,totalPagesDrop:totalPagesDrop,totalPagesPick:totalPagesPick,currentPage:currentPage})
+            res.render("admin/listlocals",{dropLocal:dropLocals,pickLocal:pickLocals,totalPagesDrop:totalPagesDrop,totalPagesPick:totalPagesPick,currentPage:currentPage})
         }catch (e){
             res.render('notfound')
         }
@@ -72,9 +72,9 @@ class LocalController {
             const dropLocal = await DropofLocaltion.findOne({_id: req.params.id})
             const pickLocal = await PickupLocaltion.findOne({_id: req.params.id})
             if (dropLocal){
-                res.render('updateLocal',{local:dropLocal, name:'drop'})
+                res.render('admin/updateLocal',{local:dropLocal, name:'drop'})
             }else if(pickLocal) {
-                res.render('updateLocal',{local:pickLocal, name: 'pick'})
+                res.render('admin/updateLocal',{local:pickLocal, name: 'pick'})
             }else {
                 res.render('notfound')
             }

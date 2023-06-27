@@ -3,7 +3,10 @@ import multer from "multer";
 const upload = multer();
 import express from "express";
 import LocalController from "../controllers/local.controller";
+import permissionMiddleware from "../middlewares/permission.middleware";
 const localRouter = Router();
+
+localRouter.use(permissionMiddleware)
 
 localRouter.get('/createlocals',upload.none(),LocalController.getCreateLocal);
 localRouter.post('/createlocals',upload.none(),LocalController.createLocals);

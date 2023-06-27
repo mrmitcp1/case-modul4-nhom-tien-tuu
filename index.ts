@@ -9,6 +9,7 @@ import carRouter from "./src/routers/cars.router";
 import {rentalRouters} from "./src/routers/rental.routers";
 import {logoutRouter} from "./src/routers/logout.router";
 import {authRouter} from "./src/routers/auth.router";
+import {adminRouter} from "./src/routers/admin.router";
 
 const PORT = 3333;
 const app = express();
@@ -46,10 +47,11 @@ app.use((req: any, res: any, next: any) => {
     res.redirect("/login");
   }
 });
+app.use("/car", rentalRouters);
 app.use(logoutRouter);
 app.use('/adm', localRouter)
 app.use(carRouter);
-app.use("/car", rentalRouters);
+app.use(adminRouter);
 
 app.listen(PORT, () => {
   console.log(`App is running at http://localhost:${PORT}/index`);
