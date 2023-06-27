@@ -25,23 +25,58 @@ class CarController {
     let carBrand = await CarController.getSearchCarByBrand(req, res);
     let carSeat = await CarController.getSearchCarBySeat(req, res);
     let carGear = await CarController.getSearchCarByGear(req, res);
+
+    let role;
+    let user;
+    if (req.user) {
+      if (req.user.username) {
+        user = req.user;
+        role = req.user.role;
+      } else {
+        let userInfo = await User.findOne({ _id: req.user.id });
+        user = {
+          id: userInfo._id,
+          username: userInfo.user_name,
+          role: userInfo.user_role,
+        };
+        role = userInfo.user_role;
+      }
+    }
+
     res.render("carModelView", {
       data: cars,
       brandArray: carBrand,
       seatArray: carSeat,
       gearArray: carGear,
+      userState: role,
+      userGreet: user,
     });
   }
 
   static async carDetail(req: any, res: any) {
     const carId = req.params.id;
-    // const car = await Car.findOne({ _id: carId }).catch((err) => {
-    //   console.log(err.message);
-    // });
     const car = await Car.findById({ _id: req.params.id }).populate(
       "car_comment.postedBy"
     );
-    res.render("carDetail", { data: car });
+
+    let role;
+    let user;
+    if (req.user) {
+      if (req.user.username) {
+        user = req.user;
+        role = req.user.role;
+      } else {
+        let userInfo = await User.findOne({ _id: req.user.id });
+        user = {
+          id: userInfo._id,
+          username: userInfo.user_name,
+          role: userInfo.user_role,
+        };
+        role = userInfo.user_role;
+      }
+    }
+
+    res.render("carDetail", { data: car, userState: role, userGreet: user });
   }
 
   static async carComment(req: any, res: any) {
