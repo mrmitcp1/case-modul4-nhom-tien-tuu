@@ -55,7 +55,7 @@ class CarController {
 
   static async carDetail(req: any, res: any) {
     const carId = req.params.id;
-    const car = await Car.findById({ _id: req.params.id }).populate(
+    const car : any = await Car.findById({ _id: req.params.id }).populate(
       "car_comment.postedBy"
     );
 
@@ -109,11 +109,11 @@ class CarController {
   }
   static async createCar(req: any, res: any) {
     try {
-      const images = [];
-      let carImages = req.files;
-      carImages.forEach((item) => {
-        images.push(item.originalname);
-      });
+      let images =[]
+      const arrImg = req.body.image.slice(0, -1).split(';')
+      for (let i = 0; i < arrImg.length; i++) {
+        images.push(arrImg[i])
+      }
       const dropNew = new DropofLocaltion({
         dropofLocaltion_name: req.body.dropofLocaltion_name,
       });
