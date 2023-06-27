@@ -31,8 +31,8 @@ export class MainController {
           role = userInfo.user_role;
         }
       }
-      res.render("index", {userState: role, userGreet: user});
     }
+    res.render("index", {userState: role, userGreet: user});
   }
   static getInfoUser(req, res){
       let role;

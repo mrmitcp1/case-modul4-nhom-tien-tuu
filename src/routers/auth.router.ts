@@ -14,7 +14,7 @@ authRouter.post(
   })
 );
 authRouter.get("/", (req, res) => {
-  res.render("index");
+  res.redirect("/index");
 });
 authRouter.get("/user", UserController.displayUserPage);
 authRouter.get("/register", AuthController.getFormRegister);
