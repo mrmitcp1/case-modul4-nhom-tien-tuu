@@ -52,6 +52,27 @@
                   </li>
                 </ul>
                 <ul class="navbar-nav mb-0 ms-auto">
+                  <% if(!userState) { %>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/login">Sign In</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link button_2 ms-2 me-2" href="/register"
+                      >Register <i class="fa fa-check-circle ms-1"></i
+                    ></a>
+                  </li>
+                  <% } else if(userState === 'user') { %>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/user"
+                      ><%= userGreet.username %></a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link button_2 ms-2 me-2" href="/logout"
+                      >Logout <i class="fa fa-check-circle ms-1"></i
+                    ></a>
+                  </li>
+                  <% } else if(userState === 'admin') { %>
                   <li class="nav-item">
                     <a class="nav-link" href="/admin/home">Hello Admin!</a>
                   </li>
@@ -60,6 +81,7 @@
                       >Logout <i class="fa fa-check-circle ms-1"></i
                     ></a>
                   </li>
+                  <% } %>
                 </ul>
               </div>
             </div>
