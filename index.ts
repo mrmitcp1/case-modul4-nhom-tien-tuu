@@ -38,7 +38,12 @@ app.use(livereload());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static('assets'));
-
+app.use((req: any, res: any, next: any) => {
+    if (req.isAuthenticated()) {
+        res.locals.userLogin = req.user;
+    }
+    next();
+});
 app.use(authRouter);
 
 app.use("/car", rentalRouters);
@@ -47,12 +52,7 @@ app.use('/adm', localRouter)
 app.use(carRouter);
 app.use(adminRouter);
 
-app.use((req: any, res: any, next: any) => {
-    if (req.isAuthenticated()) {
-        res.locals.userLogin = req.user;
-    }
-    next();
-});
+
 
 app.listen(PORT, () => {
   console.log(`App is running at http://localhost:${PORT}/login`);
