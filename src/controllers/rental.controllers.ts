@@ -28,6 +28,12 @@ class RentalControllers {
                 drop.push(item.dropofLocaltion_name)
             })
             let dropLocationOfCar = [...new Set(drop)]
+            const pickLocation = await PickupLocaltion.find();
+            let pick = [];
+            pickLocation.forEach((item)=>{
+                pick.push(item.pickupLocaltion_name)
+            })
+            let pickLocationOfCar = [...new Set(pick)]
             let role;
             let user;
             if (req.user) {
@@ -47,6 +53,7 @@ class RentalControllers {
             const rentalDetail = await RentalDetail.find({car_id: dataCar.id});
             res.render("bookingCar", {
                 car: dataCar,
+                pickLocations : pickLocationOfCar,
                 dropLocations: dropLocationOfCar,
                 userState: role,
                 userGreet: user,
