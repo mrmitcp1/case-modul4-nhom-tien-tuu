@@ -17,24 +17,20 @@
     <h1>Update Car</h1>
     <form method="post" action="" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="exampleFormControlInput1">Drop Of Local</label>
-            <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Drop Of Local"
-                    name="dropofLocaltion_name"
-                    value="<%=dropLocal%>"
-            />
+            <label for="exampleFormControlSelect1">Địa điểm nhận xe</label>
+            <select class="form-control" name="pickupLocaltion_name">
+                <% pickLocal.forEach((pick) => { %>
+                <option><%=pick%></option>
+                <% }) %>
+            </select>
         </div>
         <div class="form-group">
-            <label for="exampleFormControlInput1">Pick Up Local</label>
-            <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Pick Up Local"
-                    name="pickupLocaltion_name"
-                    value="<%=pickLocal%>"
-            />
+            <label for="exampleFormControlSelect1">Địa điểm trả xe</label>
+            <select class="form-control" name="dropofLocaltion_name">
+                <% dropLocal.forEach((drop) => { %>
+                <option><%=drop%></option>
+                <% }) %>
+            </select>
         </div>
         <div class="form-group">
             <label for="exampleFormControlInput1">Brand Of Car</label>
@@ -144,16 +140,25 @@
             ></textarea>
         </div>
         <div class="mb-3">
-            <label for="formFileMultiple" class="form-label"
-            >Select Pictures</label
-            >
-            <input
-                    class="form-control"
-                    type="file"
-                    id="formFileMultiple"
-                    name="img"
-                    multiple
-            />
+            <div class="form-group">
+                <label for="image">Chọn ảnh cho xe</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="image"
+                        name="image"
+                        placeholder="Image"
+                        hidden
+                        onchange="check()"
+                />
+                <div id="imgDiv" multiple></div>
+                <input
+                        type="file"
+                        id="fileButton"
+                        onchange="uploadImage(event)"
+                        multiple
+                />
+            </div>
         </div>
         <button type="submit" class="btn btn-success">Update</button>
     </form>
@@ -174,4 +179,68 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"
 ></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyCV-CXu6OeOGDKq1A5Ue5czNAusUPWled0",
+        authDomain: "rent-car-30b65.firebaseapp.com",
+        projectId: "rent-car-30b65",
+        storageBucket: "rent-car-30b65.appspot.com",
+        messagingSenderId: "925383711044",
+        appId: "1:925383711044:web:2a8711202c84c16d539f11",
+        measurementId: "G-92DHXH59GF",
+    };
+    firebase.initializeApp(firebaseConfig);
+</script>
+
+<script type="text/javascript">
+    function uploadImage(e) {
+        let fbBucketName = "images";
+        let uploader = document.getElementById("uploader");
+        let files = e.target.files; // Lấy danh sách các file đã được chọn
+        for (let i = 0; i < files.length; i++) {
+            let file = files[i];
+            let storageRef = firebase.storage().ref(`${fbBucketName}/${file.name}`);
+            let uploadTask = storageRef.put(file);
+            uploadTask.on(
+                firebase.storage.TaskEvent.STATE_CHANGED,
+                function (snapshot) {
+                    console.log(snapshot);
+                    uploader.value =
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    switch (snapshot.state) {
+                        case firebase.storage.TaskState.PAUSED:
+                            break;
+                        case firebase.storage.TaskState.RUNNING:
+                            break;
+                    }
+                },
+                function (error) {
+                    switch (error.code) {
+                        case "storage/unauthorized":
+                            break;
+                        case "storage/canceled":
+                            break;
+                        case "storage/unknown":
+                            break;
+                    }
+                },
+                async function () {
+                    let downloadURL = await uploadTask.snapshot.downloadURL;
+                    console.log(downloadURL);
+                    let imgDiv = document.getElementById("imgDiv");
+                    let imgElement = document.createElement("img");
+                    imgElement.setAttribute("height", "200px");
+                    imgElement.setAttribute("width", "200px");
+                    imgElement.setAttribute("src", downloadURL);
+                    imgDiv.appendChild(imgElement);
+                    let imageInput = document.getElementById("image");
+                    imageInput.value += downloadURL + ";";
+                    check();
+                }
+            );
+        }
+    }
+</script>
 </html>

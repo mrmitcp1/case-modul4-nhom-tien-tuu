@@ -197,8 +197,14 @@ class CarController {
         });
         car.car_img = [...images];
       }
-      car.drop = req.body.drop;
-      car.pickup = req.body.pickUp;
+      // @ts-ignore
+      car.drop = new DropofLocaltion({
+        dropofLocaltion_name: req.body.dropofLocaltion_name,
+      });
+      // @ts-ignore
+      car.pickup = new PickupLocaltion({
+        pickupLocaltion_name: req.body.pickupLocaltion_name,
+      });
       car.car_brand = req.body.brand;
       car.car_model = req.body.model;
       car.car_type = req.body.type;
