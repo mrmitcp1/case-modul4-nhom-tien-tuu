@@ -10,10 +10,7 @@ class UserController {
       })
         .populate("user_id")
         .populate("car_id");
-
-      console.log(rentalBill);
-
-      res.render("userdetail", { user: user });
+      res.render("userdetail", { user: user, data: rentalBill });
     } else {
       res.redirect("/index");
     }
@@ -27,6 +24,12 @@ class UserController {
     } else {
       res.redirect("/index");
     }
+  }
+
+  static async removeBill(req: any, res: any) {
+    const billId = req.params.id;
+    const bill = await RentalDetail.findByIdAndDelete({ _id: billId });
+    res.redirect("/user");
   }
 
   static async updateUserInfo(req: any, res: any) {
