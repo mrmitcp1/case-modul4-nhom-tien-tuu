@@ -33,7 +33,6 @@ class AuthController {
     static async deleteUser(req,res){
         try {
             const user = await User.findOne({_id : req.params.id})
-            console.log(user)
             if (user){
                 await user.deleteOne({_id : req.params.id})
                 res.redirect('/admin/listuser')
@@ -42,7 +41,6 @@ class AuthController {
             }
         }catch (e){
             res.render('notfound')
-
         }
     }
 }

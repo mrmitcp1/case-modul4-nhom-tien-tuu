@@ -178,7 +178,6 @@ class CarController {
   static async updateCar(req, res) {
     try {
       const car = await Car.findOne({ _id: req.params.id });
-      console.log(req.files);
       if (req.files.length !== 0) {
         let images = [];
         let carImages = req.files;
