@@ -164,20 +164,24 @@ class CarController {
   static async getUpdate(req, res) {
     try {
       const dropLocal = await DropofLocaltion.find();
-      let dropLocation =[];
-      dropLocal.forEach((item=>{
-        dropLocation.push(item.dropofLocaltion_name)
-      }))
-      let dropLocationOfCar = [...new Set(dropLocation)]
+      let dropLocation = [];
+      dropLocal.forEach((item) => {
+        dropLocation.push(item.dropofLocaltion_name);
+      });
+      let dropLocationOfCar = [...new Set(dropLocation)];
       const pickLocal = await PickupLocaltion.find();
-      let pickLocation =[];
-      pickLocal.forEach((item=>{
-        pickLocation.push(item.pickupLocaltion_name)
-      }))
-      let pickLocationOfCar = [...new Set(pickLocation)]
+      let pickLocation = [];
+      pickLocal.forEach((item) => {
+        pickLocation.push(item.pickupLocaltion_name);
+      });
+      let pickLocationOfCar = [...new Set(pickLocation)];
       const car = await Car.findOne({ _id: req.params.id });
       if (car) {
-        res.render("admin/admcarUpdate", { car: car, dropLocal: dropLocationOfCar, pickLocal: pickLocationOfCar, });
+        res.render("admin/admcarUpdate", {
+          car: car,
+          dropLocal: dropLocationOfCar,
+          pickLocal: pickLocationOfCar,
+        });
       } else {
         res.render("notfound");
       }
@@ -268,7 +272,6 @@ class CarController {
         cars = [...gearArray];
       } else {
         cars = await Car.find().limit(limit).skip(offset);
-
       }
       let carBrand = await CarController.getSearchCarByBrand(req, res);
       let carSeat = await CarController.getSearchCarBySeat(req, res);

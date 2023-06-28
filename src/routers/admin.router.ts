@@ -13,3 +13,4 @@ adminRouter.get('/admin/listuser',AuthController.getInfoUser);
 adminRouter.get('/admin/deleteuser/:id',AuthController.deleteUser)
 adminRouter.get('/admin/admininfo',AdminController.displayAdminEditPage)
 adminRouter.post('/admin/admininfo',AdminController.updateAdminInfo)
+adminRouter.get('/comment/delete/:id', AdminController.deleteComment)

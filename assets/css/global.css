@@ -649,3 +649,16 @@ pre {
   border: 1px solid #ff4d30 !important;
   color: white !important;
 }
+
+.btn-dlt {
+  background-color: white;
+  border: 1px solid #dc3545;
+  color: #dc3545;
+}
+
+.btn-dlt:hover,
+.btn-dlt:active {
+  background-color: #dc3545;
+  border: 1px solid #dc3545;
+  color: white;
+}
