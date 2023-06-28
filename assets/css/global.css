@@ -613,3 +613,11 @@ pre {
 .btn-user:hover {
   border: 1px solid #ff4d30;
 }
+
+.carousel-control-prev {
+  width: 8%;
+}
+
+.grid figure {
+  max-height: 400px;
+}
