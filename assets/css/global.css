@@ -632,7 +632,8 @@ pre {
 
 .center_o,
 .center_dt,
-.center_login {
+.center_login,
+.center_reg {
   background-image: url("https://i.imgur.com/VHU37Dk.jpg") !important;
 }
 
