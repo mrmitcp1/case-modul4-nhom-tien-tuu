@@ -266,9 +266,11 @@
                 </div>
                 <hr />
                 <h6 class="mb-0">
-                  <a class="button book-btn" href="/car/booking/<%= item._id %>"
+                  <% if (locals.userLogin.role === 'user') {%>
+                    <a class="button book-btn" href="/car/booking/<%= data._id %>"
                     >Book Ride <i class="fa fa-check-circle ms-1"></i>
-                  </a>
+                    </a>
+                  <% } %>
                 </h6>
               </div>
             </div>

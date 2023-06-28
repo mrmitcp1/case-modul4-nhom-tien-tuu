@@ -75,7 +75,6 @@ class CarController {
         role = userInfo.user_role;
       }
     }
-
     res.render("carDetail", { data: car, userState: role, userGreet: user });
   }
 
