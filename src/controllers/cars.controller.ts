@@ -164,9 +164,21 @@ class CarController {
 
   static async getUpdate(req, res) {
     try {
+      const dropLocal = await DropofLocaltion.find();
+      let dropLocation =[];
+      dropLocal.forEach((item=>{
+        dropLocation.push(item.dropofLocaltion_name)
+      }))
+      let dropLocationOfCar = [...new Set(dropLocation)]
+      const pickLocal = await PickupLocaltion.find();
+      let pickLocation =[];
+      pickLocal.forEach((item=>{
+        pickLocation.push(item.pickupLocaltion_name)
+      }))
+      let pickLocationOfCar = [...new Set(pickLocation)]
       const car = await Car.findOne({ _id: req.params.id });
       if (car) {
-        res.render("admin/admcarUpdate", { car: car });
+        res.render("admin/admcarUpdate", { car: car, dropLocal: dropLocationOfCar, pickLocal: pickLocationOfCar, });
       } else {
         res.render("notfound");
       }
@@ -211,10 +223,10 @@ class CarController {
     }
   }
 
-  static async showAllCarForAdm(req: any, res: any) {
-    const cars = await Car.find();
-    res.render("admin/admCarList", { data: cars });
-  }
+  // static async showAllCarForAdm(req: any, res: any) {
+  //   const cars = await Car.find();
+  //   res.render("admin/admCarList", { data: cars });
+  // }
 
   static async deleteCar(req, res) {
     try {
@@ -232,6 +244,7 @@ class CarController {
 
   static async showCarForAdm(req, res) {
     try {
+      let cars = [];
       let limit: number;
       const allCar = await Car.find();
       let currentPage = req.query.page ? +req.query.page : 1;
@@ -242,11 +255,32 @@ class CarController {
       }
       let totalPages = Math.ceil(allCar.length / limit);
       let offset = (currentPage - 1) * limit;
-      let cars = await Car.find().limit(limit).skip(offset);
+      if (req.body.brand) {
+        let car_brand = req.body.brand;
+        let carArr = await Car.find({ car_brand });
+        cars = [...carArr];
+      } else if (req.body.seat) {
+        let car_seat = req.body.seat;
+        let seatArr = await Car.find({ car_seat });
+        cars = [...seatArr];
+      } else if (req.body.gear) {
+        let car_gear = req.body.gear;
+        let gearArray = await Car.find({ car_gear });
+        cars = [...gearArray];
+      } else {
+        cars = await Car.find().limit(limit).skip(offset);
+
+      }
+      let carBrand = await CarController.getSearchCarByBrand(req, res);
+      let carSeat = await CarController.getSearchCarBySeat(req, res);
+      let carGear = await CarController.getSearchCarByGear(req, res);
       res.render("admin/admCarList", {
         totalPages: totalPages,
         currentPage: currentPage,
         data: cars,
+        brandArray: carBrand,
+        seatArray: carSeat,
+        gearArray: carGear,
       });
     } catch (e) {
       console.log(e.message);

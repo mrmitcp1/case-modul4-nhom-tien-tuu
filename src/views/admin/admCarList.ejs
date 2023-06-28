@@ -96,38 +96,88 @@
       <div class="container-xl">
         <div>
           <div class="dropdown">
-            <button
-              class="btn btn-success dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Chọn theo hãng xe
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+            <form method="post" enctype="multipart/form-data" id="form-brand">
+              <div class="btn-group">
+                <button
+                        type="button"
+                        class="btn btn-secondary dropdown-toggle"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        onchange="submitForm()"
+                >
+                  Chọn theo kiểu xe
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <% brandArray.forEach((item) => { %>
+                  <button
+                          class="dropdown-item"
+                          type="submit"
+                          value="<%=item%>"
+                          name="brand"
+                  >
+                    <%=item%>
+                  </button>
+                  <% }) %>
+                </div>
+              </div>
+            </form>
           </div>
           <div class="dropdown">
-            <button
-              class="btn btn-success dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Chọn theo số ghế
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+            <form method="post" enctype="multipart/form-data" id="form-seat">
+              <div class="btn-group">
+                <button
+                        type="button"
+                        class="btn btn-secondary dropdown-toggle"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        onchange="submitForm()"
+                >
+                  Chọn theo số ghế
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <% seatArray.forEach((item) => { %>
+                  <button
+                          class="dropdown-item"
+                          type="submit"
+                          value="<%=item%>"
+                          name="seat"
+                  >
+                    <%=item%>
+                  </button>
+                  <% }) %>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="dropdown">
+            <form method="post" enctype="multipart/form-data" id="form-gear">
+              <div class="btn-group">
+                <button
+                        type="button"
+                        class="btn btn-secondary dropdown-toggle"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        onchange="submitForm()"
+                >
+                  Chọn theo kiểu Số
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <% gearArray.forEach((item) => { %>
+                  <button
+                          class="dropdown-item"
+                          type="submit"
+                          value="<%=item%>"
+                          name="gear"
+                  >
+                    <%=item%>
+                  </button>
+                  <% }) %>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
         <div class="row model_pg1">
