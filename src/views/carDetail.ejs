@@ -166,7 +166,6 @@
                 </div>
               </div>
             </div>
-
             <div class="blog_1rdt3 mt-4 bg_light p-4">
               <div class="blog_1rdt3it row">
                 <div class="col-md-12">
@@ -186,6 +185,25 @@
                         item.created.toISOString().split('T')[0]; %>
                       </p>
                     </h6>
+                    <% if(userGreet.role === 'admin') { %>
+                    <form
+                      action="/comment/delete/<%= item._id %>"
+                      method="delete"
+                      style="display: inline-block; float: right"
+                    >
+                      <button
+                        class="btn btn-dlt"
+                        onclick="return confirm('Bạn có chắc muốn xóa bình luận này?')"
+                        style="
+                          display: inline-block;
+                          padding: 2px 9px;
+                          border-radius: 50%;
+                        "
+                      >
+                        X
+                      </button>
+                    </form>
+                    <% } %>
                     <p class="mb-0 font_14"><%= item.text %></p>
                     <hr />
 
@@ -260,9 +278,9 @@
               <h6 class="mb-0">
                 <% if (locals.userLogin.role === 'user') {%>
                 <a class="button book-btn" href="/car/booking/<%= data._id %>"
-                >Book Ride <i class="fa fa-check-circle ms-1"></i>
+                  >Book Ride <i class="fa fa-check-circle ms-1"></i>
                 </a>
-                  <% } %>
+                <% } %>
               </h6>
             </div>
           </div>
