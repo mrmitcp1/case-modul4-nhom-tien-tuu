@@ -3,6 +3,9 @@ import userController from "./user.controller";
 
 class AuthController {
     static getFormLogin(req: any, res: any): any {
+        if (req.isAuthenticated()) {
+        return res.redirect('/index') 
+      }
         res.render('auth/login')
     }
 
@@ -33,7 +36,6 @@ class AuthController {
     static async deleteUser(req,res){
         try {
             const user = await User.findOne({_id : req.params.id})
-            console.log(user)
             if (user){
                 await user.deleteOne({_id : req.params.id})
                 res.redirect('/admin/listuser')
@@ -42,7 +44,6 @@ class AuthController {
             }
         }catch (e){
             res.render('notfound')
-
         }
     }
 }

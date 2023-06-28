@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Car Lease</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/global.css" rel="stylesheet" />
+    <link href="/css/index.css" rel="stylesheet" />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+            rel="stylesheet"
+    />
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<section id="header">
+    <nav
+            class="navbar navbar-expand-md navbar-light"
+            id="navbar_sticky"
+            style="background-color: rgba(0, 0, 0, 0.9)"
+    >
+        <div class="container-xl">
+            <a class="navbar-brand fs-3 p-0 fw-bold text-white" href="/index"
+            ><i class="fa fa-car col_oran me-1 fs-2 align-middle"></i> CAR
+                <br />
+                <span class="fs-5 span_1">Lease</span></a
+            >
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mb-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/index"
+                        >Home</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cars/list">Vehicle Models </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mb-0 ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user"><%= user.username %></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link button_2 ms-2 me-2" href="/logout"
+                        >Logout <i class="fa fa-check-circle ms-1"></i
+                            ></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+<section class="p_3" id="model_pg">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <ul>
+                    <li>
+                        <a href="/user" class="btn button_2 btn-user"
+                        >Thay đổi thông tin tài khoản</a
+                        >
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-8">
+                <form action="/admin/admininfo" method="post">
+                    <section id="login">
+                        <div class="container-xl">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="login_1 m-auto">
+                                        <h3 class="col_oran">Sửa thông tin tài khoản</h3>
+                                        <p>Thay đổi thông tin người dùng</p>
+                                        <h6 class="mt-4">Full Name</h6>
+                                        <input
+                                                type="text"
+                                                class="form-control"
+                                                name="name"
+                                                value="<%= userData.user_name %>"
+                                                placeholder="Your Name"
+                                        />
+                                        <h6 class="mt-4">Email Address</h6>
+                                        <input
+                                                type="email"
+                                                class="form-control"
+                                                name="email"
+                                                value="<%= userData.user_email %>"
+                                                placeholder="Your Email"
+                                        />
+                                        <h6 class="mt-4">Password</h6>
+                                        <input
+                                                type="password"
+                                                class="form-control"
+                                                name="password"
+                                                value="<%= userData.user_password %>"
+                                                placeholder="Your Password"
+                                        />
+                                        <h6 class="mt-4 mb-0">
+                                            <button
+                                                    onclick="return confirm('You sure to update this information?')"
+                                                    href="/login.html"
+                                                    class="btn btn-danger"
+                                                    class="button"
+                                                    type="submit"
+                                            >
+                                                Update <i class="fa fa-location-arrow ms-1"></i>
+                                            </button>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
