@@ -24,9 +24,9 @@
       >
         <div class="container-xl">
           <a class="navbar-brand fs-3 p-0 fw-bold text-white" href="/index"
-            ><i class="fa fa-car col_oran me-1 fs-2 align-middle"></i> CAR
+            ><img src="https://firebasestorage.googleapis.com/v0/b/rent-car-30b65.appspot.com/o/images%2Ffavicon.png?alt=media&token=a47f67b1-774e-44ef-845b-2c8a1594ed4a" alt="" height="30px">
             <br />
-            <span class="fs-5 span_1">Lease</span></a
+            </a
           >
           <button
             class="navbar-toggler"
@@ -82,7 +82,51 @@
               </li>
             </ul>
           </div>
-          <div class="col-sm-8">col-sm-8</div>
+          <div class="col-sm-8">
+            <% if(data.length === 0) { %>
+            <div style="width: 100%; padding: 20px">
+              <p>
+                <strong>
+                  Bạn chưa có đơn hàng nào,
+                  <a href="/index" style="color: blue">đặt xe</a> ngay!
+                </strong>
+              </p>
+            </div>
+            <% } else { %> <% data.forEach((item) => { %>
+            <div class="card" style="width: 100%">
+              <img
+                class="card-img-top"
+                src="<%= item.car_id.car_img[0] %>"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= item.car_id.car_brand %> <%= item.car_id.car_model %>
+                </h5>
+                <hr />
+                <p class="card-text">
+                  Thời gian đặt xe: <%= item.datePickup.toLocaleDateString(); %>
+                </p>
+                <p class="card-text">
+                  Thời gian trả xe: <%= item.dateDrop.toLocaleDateString() %>
+                </p>
+                <p style="display: inline-block">Tổng tiền phải trả:</p>
+                <h2 style="display: inline-block; color: rgb(255, 77, 48)">
+                  <%= item.total_cost %>
+                </h2>
+                <h6 class="mb-0">
+                  <a
+                    class="button book-btn"
+                    style="text-align: center"
+                    href="/rental/delete/<%= item._id %>"
+                    onclick="return confirm('Bạn có chắc muốn hủy đơn hàng này?')"
+                    >Hủy đơn đặt <i class="fa fa-trash ms-1"></i>
+                  </a>
+                </h6>
+              </div>
+            </div>
+            <% }) %> <% } %>
+          </div>
         </div>
       </div>
     </section>

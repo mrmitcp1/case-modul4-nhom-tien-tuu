@@ -7,22 +7,27 @@ import {PickupLocaltion} from "../schemas/pickuplocaltion.schema";
 import {User} from "../schemas/user.schema";
 
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "./public/images");
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname);
-    },
+  destination: (req, file, cb) => {
+    cb(null, "./public/images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
 });
 
 class RentalControllers {
     static async getFormBookCar(req: any, res: any) {
         try {
-            const dataCar = await Car.findOne({_id: req.params.id}).populate({
+            const dataCar = await Car.findOne({ _id: req.params.id }).populate({
                 path: "pickup",
                 select: "pickupLocaltion_name",
             });
             const dropLocation = await DropofLocaltion.find();
+            let drop = [];
+            dropLocation.forEach((item)=>{
+                drop.push(item.dropofLocaltion_name)
+            })
+            let dropLocationOfCar = [...new Set(drop)]
             let role;
             let user;
             if (req.user) {
@@ -30,7 +35,7 @@ class RentalControllers {
                     user = req.user;
                     role = req.user.role;
                 } else {
-                    let userInfo: any = await User.findOne({_id: req.user.id});
+                    let userInfo :any = await User.findOne({ _id: req.user.id });
                     user = {
                         id: userInfo._id,
                         username: userInfo.user_name,
@@ -42,10 +47,10 @@ class RentalControllers {
             const rentalDetail = await RentalDetail.find({car_id: dataCar.id});
             res.render("bookingCar", {
                 car: dataCar,
-                dropLocations: dropLocation,
+                dropLocations: dropLocationOfCar,
                 userState: role,
                 userGreet: user,
-                rentalDetail: rentalDetail
+                rentalDetail: rentalDetail,
             });
         } catch (err) {
             res.render("notfound");
@@ -94,5 +99,4 @@ class RentalControllers {
         }
     }
 }
-
 export default RentalControllers;

@@ -28,10 +28,13 @@
           <nav class="navbar navbar-expand-md navbar-light" id="navbar_sticky">
             <div class="container-xl">
               <a class="navbar-brand fs-3 p-0 fw-bold text-white" href="/index"
-                ><i class="fa fa-car col_oran me-1 fs-2 align-middle"></i> CAR
+                ><img
+                  src="https://firebasestorage.googleapis.com/v0/b/rent-car-30b65.appspot.com/o/images%2Ffavicon.png?alt=media&token=a47f67b1-774e-44ef-845b-2c8a1594ed4a"
+                  alt=""
+                  height="30px"
+                />
                 <br />
-                <span class="fs-5 span_1">Lease</span></a
-              >
+              </a>
               <button
                 class="navbar-toggler"
                 type="button"
@@ -136,10 +139,7 @@
                 <div class="grid clearfix">
                   <figure class="effect-jazz mb-0 img-helper">
                     <a href="/cars/detail/<%= item._id %>">
-                      <img
-                        src="<%= item.car_img[0] %>"
-                        class="w-100"
-                        alt="abc"
+                      <img src="<%= item.car_img[0] %>" class="w-100" alt="abc"
                     /></a>
                   </figure>
                 </div>
@@ -292,7 +292,7 @@
           <div class="col-md-4">
             <div class="footer_1i">
               <h4>
-                <a href="index.html"
+                <a href="/index"
                   ><i class="fa fa-car col_oran"></i> CAR
                   <span class="fw-normal"></span>Lease</a
                 >

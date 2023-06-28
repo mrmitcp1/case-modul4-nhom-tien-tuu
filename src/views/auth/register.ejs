@@ -22,10 +22,13 @@
           <nav class="navbar navbar-expand-md navbar-light" id="navbar_sticky">
             <div class="container-xl">
               <a class="navbar-brand fs-3 p-0 fw-bold text-white" href="/index"
-                ><i class="fa fa-car col_oran me-1 fs-2 align-middle"></i> CAR
+                ><img
+                  src="https://firebasestorage.googleapis.com/v0/b/rent-car-30b65.appspot.com/o/images%2Ffavicon.png?alt=media&token=a47f67b1-774e-44ef-845b-2c8a1594ed4a"
+                  alt=""
+                  height="30px"
+                />
                 <br />
-                <span class="fs-5 span_1">Lease</span></a
-              >
+              </a>
               <button
                 class="navbar-toggler"
                 type="button"
@@ -91,6 +94,7 @@
                 <p>create your Car Lease account</p>
                 <h6 class="mt-4">Full Name</h6>
                 <input
+                  required
                   type="text"
                   class="form-control"
                   name="name"
@@ -98,6 +102,7 @@
                 />
                 <h6 class="mt-4">Email Address</h6>
                 <input
+                  required
                   type="email"
                   class="form-control"
                   name="email"
@@ -105,14 +110,15 @@
                 />
                 <h6 class="mt-4">Password</h6>
                 <input
+                  required
                   type="password"
                   class="form-control"
                   name="password"
                   placeholder="Your Password"
                 />
                 <% if(alertUsernameExisted) { %>
-                      <p>Account already exists</p>
-                        <% } %>
+                <p>Account already exists</p>
+                <% } %>
                 <div class="d-flex justify-content-between mt-4">
                   <div class="form-check">
                     <input
@@ -129,7 +135,7 @@
                 </div>
                 <h6 class="mt-4 mb-0">
                   <button
-                    href="/login.html"
+                    href="/login"
                     class="btn btn-danger"
                     class="button"
                     type="submit"
@@ -139,7 +145,7 @@
                 </h6>
                 <p class="mt-4 mb-0">
                   Already have an account?
-                  <a class="col_oran" href="login.html">Login</a>
+                  <a class="col_oran" href="/login">Login</a>
                 </p>
               </div>
             </div>

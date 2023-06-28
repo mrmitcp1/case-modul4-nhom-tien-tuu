@@ -1,10 +1,16 @@
 import { User } from "../schemas/user.schema";
+import { RentalDetail } from "../schemas/rentaldetail.schema";
 
 class UserController {
   static async displayUserPage(req: any, res: any) {
     if (req.user) {
       const user = req.user;
-      res.render("userdetail", { user: user });
+      const rentalBill = await RentalDetail.find({
+        user_id: req.user.id,
+      })
+        .populate("user_id")
+        .populate("car_id");
+      res.render("userdetail", { user: user, data: rentalBill });
     } else {
       res.redirect("/index");
     }
@@ -18,6 +24,12 @@ class UserController {
     } else {
       res.redirect("/index");
     }
+  }
+
+  static async removeBill(req: any, res: any) {
+    const billId = req.params.id;
+    const bill = await RentalDetail.findByIdAndDelete({ _id: billId });
+    res.redirect("/user");
   }
 
   static async updateUserInfo(req: any, res: any) {

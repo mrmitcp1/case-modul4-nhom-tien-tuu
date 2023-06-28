@@ -1,221 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IzE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous"
-  />
-</head>
-<body>
-<div class="container">
-  <h1>Create A New Car</h1>
-  <form method="post" action="" enctype="multipart/form-data">
-    <div class="form-group">
-      <label for="exampleFormControlSelect1">Pick Up Local</label>
-      <select class="form-control" name="pickupLocaltion_name">
-        <% pickLocal.forEach((pick) => { %>
-        <option><%=pick.pickupLocaltion_name%></option>
-        <% }) %>
-      </select>
-    </div>
-      <div class="form-group">
-          <label for="exampleFormControlSelect1">Drop Of Local</label>
-          <select class="form-control" name="dropofLocaltion_name">
-              <% dropLocal.forEach((drop) => { %>
-              <option><%=drop.dropofLocaltion_name%></option>
-              <% }) %>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IzE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Create A New Car</h1>
+      <form method="post" action="" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Địa điểm nhận xe</label>
+          <select class="form-control" name="pickupLocaltion_name">
+            <% pickLocal.forEach((pick) => { %>
+            <option><%=pick%></option>
+            <% }) %>
           </select>
-      </div>
-    <div class="form-group">
-      <label for="exampleFormControlInput1">Brand Of Car</label>
-      <input
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Địa điểm trả xe</label>
+          <select class="form-control" name="dropofLocaltion_name">
+            <% dropLocal.forEach((drop) => { %>
+            <option><%=drop%></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Hãng sản xuất</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nhập hãng xe (vd: Toyota)"
+            name="brand"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Mẫu xe</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Mẫu xe (vd: Vios)"
+            name="model"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Loại xe</label>
+          <select class="form-control" name="type">
+            <option>Sedan</option>
+            <option>Crossover</option>
+            <option>7 Seat</option>
+            <option>Pick Up</option>
+            <option>Sport</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Số chỗ ngồi</label>
+          <select class="form-control" name="seat">
+            <option>2</option>
+            <option>4</option>
+            <option>7</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Loại hộp số</label>
+          <select class="form-control" name="gear">
+            <option>Số sàn</option>
+            <option>Số tự động</option>
+            <option>CVT</option>
+            <option>Xe điện</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Biển số xe</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nhập biển số xe (vd: 99A-9999)"
+            name="licensePlate"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Nhập năm sản xuất</label>
+          <input
+            type="number"
+            min="1900"
+            max="2030"
+            class="form-control"
+            placeholder="Nhập đời xe"
+            name="year"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Nhập màu xe</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Màu xe"
+            name="color"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1"
+            >Nhập giá thuê xe theo ngày</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            placeholder="car rental price by day"
+            name="rentalPrice"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Nhập tình trạng xe</label>
+          <select class="form-control" name="availability">
+            <option>Đã cho thuê</option>
+            <option>Còn trống</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Nhập mô tả xe</label>
+          <textarea
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="10"
+            name="des"
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <div class="form-group">
+            <label for="image">Chọn ảnh cho xe</label>
+            <input
               type="text"
               class="form-control"
-              placeholder="Brand Of Car"
-              name="brand"
-      />
+              id="image"
+              name="image"
+              placeholder="Image"
+              hidden
+              onchange="check()"
+            />
+            <div id="imgDiv" multiple></div>
+            <input
+              type="file"
+              id="fileButton"
+              onchange="uploadImage(event)"
+              multiple
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success">Create</button>
+      </form>
     </div>
-    <div class="form-group">
-      <label for="exampleFormControlInput1">Model Of Car</label>
-      <input
-              type="text"
-              class="form-control"
-              placeholder="Model Of Car"
-              name="model"
-      />
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlSelect1">Type Of Car</label>
-      <select class="form-control" name="type">
-        <option>Sedan</option>
-        <option>7 Seat</option>
-        <option>Pick Up</option>
-        <option>Sport</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlSelect1">Seat</label>
-      <select class="form-control" name="seat">
-        <option>2</option>
-        <option>4</option>
-        <option>7</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlSelect1">Transmission</label>
-      <select class="form-control" name="gear">
-        <option>Manual Transmission Car</option>
-        <option>Automatic Transmission Car</option>
-        <option>CVT</option>
-        <option>Electric Car</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlInput1">License Plate</label>
-      <input
-              type="text"
-              class="form-control"
-              placeholder="License Plate"
-              name="licensePlate"
-      />
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlInput1">Manufacturing Date</label>
-      <input
-              type="number"
-              min="1900"
-              max="2030"
-              class="form-control"
-              placeholder="Nhập đời xe"
-              name="year"
-      />
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlInput1">Color Of Car</label>
-      <input
-              type="text"
-              class="form-control"
-              placeholder="Color Of Car"
-              name="color"
-      />
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlInput1"
-      >Car Rental Price By Day</label
-      >
-      <input
-              type="number"
-              class="form-control"
-              placeholder="car rental price by day"
-              name="rentalPrice"
-      />
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlSelect1">Availability</label>
-      <select class="form-control" name="availability">
-        <option>Unavailable</option>
-        <option>Available</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">About Car</label>
-      <textarea
-              class="form-control"
-              id="exampleFormControlTextarea1"
-              rows="10"
-              name="des"
-      ></textarea>
-    </div>
-    <div class="mb-3">
-      <div class="form-group">
-        <label for="image">Mô tả</label>
-        <input type="text" class="form-control" id="image" name="image" placeholder="Image" hidden onchange="check()"/>
-        <div id="imgDiv" multiple></div>
-        <input type="file" id="fileButton" onchange="uploadImage(event)" multiple>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-success">Create</button>
-  </form>
-</div>
-</body>
-<script
-        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"
-></script>
-<script
-        src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"
-></script>
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"
-></script>
-<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  const firebaseConfig = {
-    apiKey : "AIzaSyCV-CXu6OeOGDKq1A5Ue5czNAusUPWled0" ,
-    authDomain : "rent-car-30b65.firebaseapp.com" ,
-    projectId : "rent-car-30b65" ,
-    storageBucket : "rent-car-30b65.appspot.com" ,
-    messagingSenderId : "925383711044" ,
-    appId : "1:925383711044:web:2a8711202c84c16d539f11" ,
-    measurementId : "G-92DHXH59GF"
-  };
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCV-CXu6OeOGDKq1A5Ue5czNAusUPWled0",
+      authDomain: "rent-car-30b65.firebaseapp.com",
+      projectId: "rent-car-30b65",
+      storageBucket: "rent-car-30b65.appspot.com",
+      messagingSenderId: "925383711044",
+      appId: "1:925383711044:web:2a8711202c84c16d539f11",
+      measurementId: "G-92DHXH59GF",
+    };
     firebase.initializeApp(firebaseConfig);
+  </script>
 
-</script>
-
-<script type="text/javascript">
-  function uploadImage(e) {
-    let fbBucketName = 'images';
-    let uploader = document.getElementById('uploader');
-    let files = e.target.files;  // Lấy danh sách các file đã được chọn
-    for (let i = 0; i < files.length; i++) {
-      let file = files[i];
-      let storageRef = firebase.storage().ref(`${fbBucketName}/${file.name}`);
-      let uploadTask = storageRef.put(file);
-      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-              function (snapshot) {
-                console.log(snapshot);
-                uploader.value = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                switch (snapshot.state) {
-                  case firebase.storage.TaskState.PAUSED:
-                    break;
-                  case firebase.storage.TaskState.RUNNING:
-                    break;
-                }
-              }, function (error) {
-                switch (error.code) {
-                  case 'storage/unauthorized':
-                    break;
-                  case 'storage/canceled':
-                    break;
-                  case 'storage/unknown':
-                    break;
-                }
-              }, async function () {
-                let downloadURL = await uploadTask.snapshot.downloadURL;
-                console.log(downloadURL);
-                let imgDiv = document.getElementById('imgDiv');
-                let imgElement = document.createElement('img');
-                imgElement.setAttribute('height', '200px');
-                imgElement.setAttribute('width', '200px');
-                imgElement.setAttribute('src', downloadURL);
-                imgDiv.appendChild(imgElement);
-                let imageInput = document.getElementById('image');
-                imageInput.value += downloadURL + ";";                    check();
-              });
+  <script type="text/javascript">
+    function uploadImage(e) {
+      let fbBucketName = "images";
+      let uploader = document.getElementById("uploader");
+      let files = e.target.files; // Lấy danh sách các file đã được chọn
+      for (let i = 0; i < files.length; i++) {
+        let file = files[i];
+        let storageRef = firebase.storage().ref(`${fbBucketName}/${file.name}`);
+        let uploadTask = storageRef.put(file);
+        uploadTask.on(
+          firebase.storage.TaskEvent.STATE_CHANGED,
+          function (snapshot) {
+            console.log(snapshot);
+            uploader.value =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            switch (snapshot.state) {
+              case firebase.storage.TaskState.PAUSED:
+                break;
+              case firebase.storage.TaskState.RUNNING:
+                break;
+            }
+          },
+          function (error) {
+            switch (error.code) {
+              case "storage/unauthorized":
+                break;
+              case "storage/canceled":
+                break;
+              case "storage/unknown":
+                break;
+            }
+          },
+          async function () {
+            let downloadURL = await uploadTask.snapshot.downloadURL;
+            console.log(downloadURL);
+            let imgDiv = document.getElementById("imgDiv");
+            let imgElement = document.createElement("img");
+            imgElement.setAttribute("height", "200px");
+            imgElement.setAttribute("width", "200px");
+            imgElement.setAttribute("src", downloadURL);
+            imgDiv.appendChild(imgElement);
+            let imageInput = document.getElementById("image");
+            imageInput.value += downloadURL + ";";
+            check();
+          }
+        );
+      }
     }
-  }
-</script>
+  </script>
 </html>
