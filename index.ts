@@ -15,7 +15,7 @@ const PORT = 3333;
 const app = express();
 app.set("view engine", "ejs");
 app.set("views", "./src/views");
-const DB_URL = "mongodb://127.0.0.1:27017/case_modul4";
+const DB_URL = "mongodb+srv://Viet:Anhlaai%40111@viet.ygv7f2b.mongodb.net/";
 mongoose
   .connect(DB_URL)
   .then(() => console.log("DB Connected!"))
