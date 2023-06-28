@@ -61,11 +61,11 @@
                 </ul>
                 <ul class="navbar-nav mb-0 ms-auto">
                   <li class="nav-item">
-                    <a class="nav-link" href="/login">Sign In</a>
+                    <a class="nav-link" href="/admin/home">Hello Admin!</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link button_2 ms-2 me-2" href="/register"
-                      >Register <i class="fa fa-check-circle ms-1"></i
+                    <a class="nav-link button_2 ms-2 me-2" href="/logout"
+                      >Logout <i class="fa fa-check-circle ms-1"></i
                     ></a>
                   </li>
                 </ul>
@@ -99,22 +99,22 @@
             <form method="post" enctype="multipart/form-data" id="form-brand">
               <div class="btn-group">
                 <button
-                        type="button"
-                        class="btn btn-secondary dropdown-toggle"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        onchange="submitForm()"
+                  type="button"
+                  class="btn btn-secondary dropdown-toggle"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  onchange="submitForm()"
                 >
                   Chọn theo kiểu xe
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
                   <% brandArray.forEach((item) => { %>
                   <button
-                          class="dropdown-item"
-                          type="submit"
-                          value="<%=item%>"
-                          name="brand"
+                    class="dropdown-item"
+                    type="submit"
+                    value="<%=item%>"
+                    name="brand"
                   >
                     <%=item%>
                   </button>
@@ -127,22 +127,22 @@
             <form method="post" enctype="multipart/form-data" id="form-seat">
               <div class="btn-group">
                 <button
-                        type="button"
-                        class="btn btn-secondary dropdown-toggle"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        onchange="submitForm()"
+                  type="button"
+                  class="btn btn-secondary dropdown-toggle"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  onchange="submitForm()"
                 >
                   Chọn theo số ghế
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
                   <% seatArray.forEach((item) => { %>
                   <button
-                          class="dropdown-item"
-                          type="submit"
-                          value="<%=item%>"
-                          name="seat"
+                    class="dropdown-item"
+                    type="submit"
+                    value="<%=item%>"
+                    name="seat"
                   >
                     <%=item%>
                   </button>
@@ -155,22 +155,22 @@
             <form method="post" enctype="multipart/form-data" id="form-gear">
               <div class="btn-group">
                 <button
-                        type="button"
-                        class="btn btn-secondary dropdown-toggle"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        onchange="submitForm()"
+                  type="button"
+                  class="btn btn-secondary dropdown-toggle"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  onchange="submitForm()"
                 >
                   Chọn theo kiểu Số
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
                   <% gearArray.forEach((item) => { %>
                   <button
-                          class="dropdown-item"
-                          type="submit"
-                          value="<%=item%>"
-                          name="gear"
+                    class="dropdown-item"
+                    type="submit"
+                    value="<%=item%>"
+                    name="gear"
                   >
                     <%=item%>
                   </button>
@@ -272,41 +272,40 @@
           </div>
           <% }) %>
         </div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <a
+                class="page-link"
+                href="/adm/list?page=<% if(currentPage > 1) { %>
+    <%= currentPage - 1 %>
+    <% } else { %>
+    #
+     <% } %>
+    "
+                aria-label="Previous"
+              >
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <% for (var i = 1; i <= totalPages ; i++) { %>
+
+            <li class="page-item">
+              <a class="page-link" href="/adm/list?page=<%=i%>"><%=i%></a>
+            </li>
+            <%}%>
+
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </section>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item">
-          <a
-            class="page-link"
-            href="/adm/list?page=<% if(currentPage > 1) { %>
-<%= currentPage - 1 %>
-<% } else { %>
-#
- <% } %>
-"
-            aria-label="Previous"
-          >
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-        <% for (var i = 1; i <= totalPages ; i++) { %>
-
-        <li class="page-item">
-          <a class="page-link" href="/adm/list?page=<%=i%>"><%=i%></a>
-        </li>
-        <%}%>
-
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-
     <section id="ride">
       <div class="ride_m">
         <div class="container-xl">

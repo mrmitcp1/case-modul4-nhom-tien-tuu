@@ -24,10 +24,13 @@
       >
         <div class="container-xl">
           <a class="navbar-brand fs-3 p-0 fw-bold text-white" href="/index"
-            ><img src="https://firebasestorage.googleapis.com/v0/b/rent-car-30b65.appspot.com/o/images%2Ffavicon.png?alt=media&token=a47f67b1-774e-44ef-845b-2c8a1594ed4a" alt="" height="30px">
+            ><img
+              src="https://firebasestorage.googleapis.com/v0/b/rent-car-30b65.appspot.com/o/images%2Ffavicon.png?alt=media&token=a47f67b1-774e-44ef-845b-2c8a1594ed4a"
+              alt=""
+              height="30px"
+            />
             <br />
-            </a
-          >
+          </a>
           <button
             class="navbar-toggler"
             type="button"
@@ -93,7 +96,7 @@
               </p>
             </div>
             <% } else { %> <% data.forEach((item) => { %>
-            <div class="card" style="width: 100%">
+            <div class="card" style="width: 100%; margin-bottom: 20px">
               <img
                 class="card-img-top"
                 src="<%= item.car_id.car_img[0] %>"
