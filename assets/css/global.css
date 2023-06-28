@@ -619,5 +619,19 @@ pre {
 }
 
 .grid figure {
-  max-height: 400px;
+  max-height: 200px;
+}
+
+.footer_1 {
+  justify-content: space-between;
+}
+
+#ride {
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/rent-car-30b65.appspot.com/o/images%2Fcover2.jpg?alt=media&token=62a4cf4f-4410-4e5a-8fe3-f10a12553b62");
+}
+
+.center_o,
+.center_dt,
+.center_login {
+  background-image: url("https://i.imgur.com/VHU37Dk.jpg") !important;
 }

@@ -55,7 +55,7 @@ class CarController {
 
   static async carDetail(req: any, res: any) {
     const carId = req.params.id;
-    const car : any = await Car.findById({ _id: req.params.id }).populate(
+    const car: any = await Car.findById({ _id: req.params.id }).populate(
       "car_comment.postedBy"
     );
 
@@ -97,17 +97,17 @@ class CarController {
   static async showCreateForm(req: any, res: any) {
     try {
       const dropLocal = await DropofLocaltion.find();
-      let dropLocation =[];
-      dropLocal.forEach((item=>{
-        dropLocation.push(item.dropofLocaltion_name)
-      }))
-      let dropLocationOfCar = [...new Set(dropLocation)]
+      let dropLocation = [];
+      dropLocal.forEach((item) => {
+        dropLocation.push(item.dropofLocaltion_name);
+      });
+      let dropLocationOfCar = [...new Set(dropLocation)];
       const pickLocal = await PickupLocaltion.find();
-      let pickLocation =[];
-      pickLocal.forEach((item=>{
-        pickLocation.push(item.pickupLocaltion_name)
-      }))
-      let pickLocationOfCar = [...new Set(pickLocation)]
+      let pickLocation = [];
+      pickLocal.forEach((item) => {
+        pickLocation.push(item.pickupLocaltion_name);
+      });
+      let pickLocationOfCar = [...new Set(pickLocation)];
       res.render("admin/admcarCreate", {
         dropLocal: dropLocationOfCar,
         pickLocal: pickLocationOfCar,
@@ -118,10 +118,10 @@ class CarController {
   }
   static async createCar(req: any, res: any) {
     try {
-      let images =[]
-      const arrImg = req.body.image.slice(0, -1).split(';')
+      let images = [];
+      const arrImg = req.body.image.slice(0, -1).split(";");
       for (let i = 0; i < arrImg.length; i++) {
-        images.push(arrImg[i])
+        images.push(arrImg[i]);
       }
       const dropNew = new DropofLocaltion({
         dropofLocaltion_name: req.body.dropofLocaltion_name,
