@@ -3,6 +3,9 @@ import userController from "./user.controller";
 
 class AuthController {
     static getFormLogin(req: any, res: any): any {
+        if (req.isAuthenticated()) {
+        return res.redirect('/index') 
+      }
         res.render('auth/login')
     }
 
