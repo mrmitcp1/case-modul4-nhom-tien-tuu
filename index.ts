@@ -10,12 +10,13 @@ import {rentalRouters} from "./src/routers/rental.routers";
 import {logoutRouter} from "./src/routers/logout.router";
 import {authRouter} from "./src/routers/auth.router";
 import {adminRouter} from "./src/routers/admin.router";
+import * as process from "process";
 
-const PORT = 3333;
+const PORT = process.env.PORT || 3333;
 const app = express();
 app.set("view engine", "ejs");
 app.set("views", "./src/views");
-const DB_URL = "mongodb+srv://Viet:Anhlaai%40111@viet.ygv7f2b.mongodb.net/";
+const DB_URL = "mongodb+srv://Viet:Anhlaai%40111@viet.ygv7f2b.mongodb.net/test";
 mongoose
   .connect(DB_URL)
   .then(() => console.log("DB Connected!"))
@@ -37,21 +38,21 @@ app.use(livereload());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static('assets'));
-
-app.use(authRouter);
 app.use((req: any, res: any, next: any) => {
-  if (req.isAuthenticated()) {
-    res.locals.userLogin = req.user;
+    if (req.isAuthenticated()) {
+        res.locals.userLogin = req.user;
+    }
     next();
-  } else {
-    res.redirect("/login");
-  }
 });
+app.use(authRouter);
+
 app.use("/car", rentalRouters);
 app.use(logoutRouter);
 app.use('/adm', localRouter)
 app.use(carRouter);
 app.use(adminRouter);
+
+
 
 app.listen(PORT, () => {
   console.log(`App is running at http://localhost:${PORT}/login`);
