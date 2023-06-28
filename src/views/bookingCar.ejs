@@ -14,10 +14,10 @@
             rel="stylesheet"
     />
     <script src="/js/bootstrap.bundle.min.js"></script>
-  </head>
-  <body>
-    <div class="main clearfix position-relative">
-      <div class="main_1 clearfix position-absolute top-0 w-100">
+</head>
+<body>
+<div class="main clearfix position-relative">
+    <div class="main_1 clearfix position-absolute top-0 w-100">
         <section id="header">
           <nav
             class="navbar navbar-expand-md navbar-light"
@@ -246,7 +246,7 @@
                                             name="dropofLocation"
                                     >
                                         <% dropLocations.forEach(location => { %>
-                                            <option><%= location %></option>
+                                            <option><%= location.dropofLocaltion_name %></option>
                                         <% }) %>
                                     </select>
                                 </div>
@@ -255,6 +255,16 @@
                         <div class="row booking_2 mt-4">
                             <div class="col-md-4 col-sm-6">
                                 <div class="booking_2i">
+                                    <textarea type="text" cols="30" rows="10" id="bookedDatePickup" hidden="hidden">
+                                        <% rentalDetail.forEach(element => { %>
+                                            <%= element.datePickup + ',' %>
+                                        <% }) %>
+                                    </textarea>
+                                    <textarea type="text" cols="30" rows="10" id="bookedDateDrop" hidden="hidden">
+                                        <% rentalDetail.forEach(element => { %>
+                                            <%= element.dateDrop + ',' %>
+                                        <% }) %>
+                                    </textarea>
                                     <h6 class="mb-3">
                                         <i class="fa fa-calendar me-1 col_oran"></i> Thời gian
                                         thuê xe
@@ -472,13 +482,23 @@
 </script>
 
 <script>
+    function cutStr(str) {
+        let arr = str.trim().split(',');
+        for (let i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].trim()
+        }
+        arr.pop();
+        return arr;
+    }
+
     function validateDates() {
         const datePickupInput = document.getElementById("datePickup");
         const dateDropofInput = document.getElementById("dateDropof");
         const pickupDate = new Date(datePickupInput.value);
         const dropofDate = new Date(dateDropofInput.value);
+        const arrayBookedDatePickup = cutStr(document.getElementById('bookedDatePickup').innerHTML);
+        const arrayBookedDateDrop = cutStr(document.getElementById('bookedDateDrop').innerHTML);
         const today = new Date();
-
         if (pickupDate < today) {
             document.getElementById("validateDateMessage").innerHTML =
                 "*Ngày thuê xe phải sau ngày hiện tại.";
@@ -492,7 +512,6 @@
             bookingButton.disabled = true;
             return;
         }
-
         if (!dateDropofInput.value) {
             document.getElementById("validateDateMessage").innerHTML =
                 "*Vui lòng chọn ngày trả xe.";
@@ -506,8 +525,20 @@
             bookingButton.disabled = true;
             return;
         }
-        document.getElementById("validateDateMessage").innerHTML =
-            "*Ngày bạn chọn phù hợp.";
+        for (let i = 0; i < arrayBookedDatePickup.length; i++) {
+            const bookedPickupDate = new Date(arrayBookedDatePickup[i]);
+            const bookedDropofDate = new Date(arrayBookedDateDrop[i]);
+            if (
+                (pickupDate >= bookedPickupDate && pickupDate < bookedDropofDate) ||
+                (dropofDate > bookedPickupDate && dropofDate <= bookedDropofDate) ||
+                (pickupDate <= bookedPickupDate && dropofDate >= bookedDropofDate)
+            ) {
+                document.getElementById("validateDateMessage").innerHTML = "*Ngày thuê và ngày trả xe bị trùng với lịch đã được đặt.";
+                bookingButton.disabled = true;
+                return;
+            }
+        }
+        document.getElementById("validateDateMessage").innerHTML = "*Ngày bạn chọn phù hợp.";
         bookingButton.disabled = false;
     }
 </script>
