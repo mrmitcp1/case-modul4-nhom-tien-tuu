@@ -256,9 +256,11 @@
                 data.car_seat %>
               </h5>
               <h6 class="mb-0">
+                <% if (locals.userLogin.role === 'user') {%>
                 <a class="button book-btn" href="/car/booking/<%= data._id %>"
-                  >Book Ride <i class="fa fa-check-circle ms-1"></i>
+                >Book Ride <i class="fa fa-check-circle ms-1"></i>
                 </a>
+                  <% } %>
               </h6>
             </div>
           </div>
