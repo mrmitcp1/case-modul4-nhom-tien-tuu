@@ -14,59 +14,59 @@
             rel="stylesheet"
     />
     <script src="/js/bootstrap.bundle.min.js"></script>
-  </head>
-  <body>
-    <div class="main clearfix position-relative">
-      <div class="main_1 clearfix position-absolute top-0 w-100">
+</head>
+<body>
+<div class="main clearfix position-relative">
+    <div class="main_1 clearfix position-absolute top-0 w-100">
         <section id="header">
-          <nav
-            class="navbar navbar-expand-md navbar-light"
-            id="navbar_sticky"
-            style="background-color: rgba(0, 0, 0, 0.9)"
-          >
-            <div class="container-xl">
-              <a class="navbar-brand fs-3 p-0 fw-bold text-white" href="/index"
-                ><i class="fa fa-car col_oran me-1 fs-2 align-middle"></i> CAR
-                <br />
-                <span class="fs-5 span_1">Lease</span></a
-              >
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/index"
-                      >Home</a
+            <nav
+                    class="navbar navbar-expand-md navbar-light"
+                    id="navbar_sticky"
+                    style="background-color: rgba(0, 0, 0, 0.9)"
+            >
+                <div class="container-xl">
+                    <a class="navbar-brand fs-3 p-0 fw-bold text-white" href="/index"
+                    ><i class="fa fa-car col_oran me-1 fs-2 align-middle"></i> CAR
+                        <br/>
+                        <span class="fs-5 span_1">Lease</span></a
                     >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/cars/list">Vehicle Models </a>
-                  </li>
-                </ul>
-                <ul class="navbar-nav mb-0 ms-auto">
-                  <li class="nav-item">
-                    <a class="nav-link" href="/user"
-                      ><%= userGreet.username %></a
+                    <button
+                            class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
                     >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link button_2 ms-2 me-2" href="/logout"
-                      >Logout <i class="fa fa-check-circle ms-1"></i
-                    ></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mb-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/index"
+                                >Home</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/cars/list">Vehicle Models </a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav mb-0 ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/user"
+                                ><%= userGreet.username %></a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link button_2 ms-2 me-2" href="/logout"
+                                >Logout <i class="fa fa-check-circle ms-1"></i
+                                    ></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </section>
         <section id="center" class="center_home">
             <div
@@ -255,6 +255,16 @@
                         <div class="row booking_2 mt-4">
                             <div class="col-md-4 col-sm-6">
                                 <div class="booking_2i">
+                                    <textarea type="text" cols="30" rows="10" id="bookedDatePickup" hidden="hidden">
+                                        <% rentalDetail.forEach(element => { %>
+                                            <%= element.datePickup + ',' %>
+                                        <% }) %>
+                                    </textarea>
+                                    <textarea type="text" cols="30" rows="10" id="bookedDateDrop" hidden="hidden">
+                                        <% rentalDetail.forEach(element => { %>
+                                            <%= element.dateDrop + ',' %>
+                                        <% }) %>
+                                    </textarea>
                                     <h6 class="mb-3">
                                         <i class="fa fa-calendar me-1 col_oran"></i> Thời gian
                                         thuê xe
@@ -448,6 +458,7 @@
                 </div>
             </div>
         </section>
+
     </div>
 </div>
 
@@ -470,15 +481,24 @@
         }
     }
 </script>
-
 <script>
+    function cutStr(str) {
+        let arr = str.trim().split(',');
+        for (let i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].trim()
+        }
+        arr.pop();
+        return arr;
+    }
+
     function validateDates() {
         const datePickupInput = document.getElementById("datePickup");
         const dateDropofInput = document.getElementById("dateDropof");
         const pickupDate = new Date(datePickupInput.value);
         const dropofDate = new Date(dateDropofInput.value);
+        const arrayBookedDatePickup = cutStr(document.getElementById('bookedDatePickup').innerHTML);
+        const arrayBookedDateDrop = cutStr(document.getElementById('bookedDateDrop').innerHTML);
         const today = new Date();
-
         if (pickupDate < today) {
             document.getElementById("validateDateMessage").innerHTML =
                 "*Ngày thuê xe phải sau ngày hiện tại.";
@@ -492,7 +512,6 @@
             bookingButton.disabled = true;
             return;
         }
-
         if (!dateDropofInput.value) {
             document.getElementById("validateDateMessage").innerHTML =
                 "*Vui lòng chọn ngày trả xe.";
@@ -506,8 +525,20 @@
             bookingButton.disabled = true;
             return;
         }
-        document.getElementById("validateDateMessage").innerHTML =
-            "*Ngày bạn chọn phù hợp.";
+        for (let i = 0; i < arrayBookedDatePickup.length; i++) {
+            const bookedPickupDate = new Date(arrayBookedDatePickup[i]);
+            const bookedDropofDate = new Date(arrayBookedDateDrop[i]);
+            if (
+                (pickupDate >= bookedPickupDate && pickupDate < bookedDropofDate) ||
+                (dropofDate > bookedPickupDate && dropofDate <= bookedDropofDate) ||
+                (pickupDate <= bookedPickupDate && dropofDate >= bookedDropofDate)
+            ) {
+                document.getElementById("validateDateMessage").innerHTML = "*Ngày thuê và ngày trả xe bị trùng với lịch đã được đặt.";
+                bookingButton.disabled = true;
+                return;
+            }
+        }
+        document.getElementById("validateDateMessage").innerHTML = "*Ngày bạn chọn phù hợp.";
         bookingButton.disabled = false;
     }
 </script>
