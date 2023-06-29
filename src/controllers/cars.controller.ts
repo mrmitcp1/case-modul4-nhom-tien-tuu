@@ -192,17 +192,18 @@ class CarController {
 
   static async updateCar(req, res) {
     try {
-      const car = await Car.findOne({ _id: req.params.id });
-      if (req.files.length !== 0) {
+      const page = req.query.page
+      const car = await Car.findOne({ _id: req.params.id }).populate({ path: "drop", select: "dropofLocaltion_name" }).populate({path: "pickup", select: "pickupLocaltion_name"});
+      const dropOf =await DropofLocaltion.findOne({dropofLocaltion_name:req.body.dropofLocaltion_name})
+      const pickUp =await PickupLocaltion.findOne({pickupLocaltion_name:req.body.pickupLocaltion_name})
         let images = [];
-        let carImages = req.files;
-        carImages.forEach((item) => {
-          images.push(item.originalname);
-        });
-        car.car_img = [...images];
-      }
-      car.drop = req.body.drop;
-      car.pickup = req.body.pickUp;
+        const arrImg = req.body.image.slice(0, -1).split(";");
+        for (let i = 0; i < arrImg.length; i++) {
+          images.push(arrImg[i]);
+        }
+        car.car_img = images;
+      car.drop =dropOf._id
+      car.pickup = pickUp._id
       car.car_brand = req.body.brand;
       car.car_model = req.body.model;
       car.car_type = req.body.type;
@@ -216,7 +217,7 @@ class CarController {
       car.car_des = req.body.des;
       await car.save();
       if (car) {
-        res.redirect("/adm/list");
+        res.redirect(`/adm/list?page=${page}`);
       } else {
         res.render("notfound");
       }
@@ -233,10 +234,11 @@ class CarController {
 
   static async deleteCar(req, res) {
     try {
+      const page = req.query.page
       const car = await Car.findOne({ _id: req.params.id });
       if (car) {
         await car.deleteOne({ _id: req.params.id });
-        res.redirect("/adm/list");
+        res.redirect(`/adm/list?page=${page}`);
       } else {
         res.render("notfound");
       }

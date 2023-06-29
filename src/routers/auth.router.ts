@@ -11,6 +11,7 @@ authRouter.post(
   passport.authenticate("local", {
     successRedirect: "/index",
     failureRedirect: "/login",
+    failureMessage: "Invalid username or password",
   })
 );
 authRouter.get("/", (req, res) => {

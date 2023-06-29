@@ -5,15 +5,17 @@ import {Car} from "../schemas/car.schema";
 class LocalController {
     static async createLocals(req,res){
         try {
-            const dropLocalNew = new DropofLocaltion({
-                dropofLocaltion_name : req.body.dropOf,
-            });
-            const pickLocalNew = new PickupLocaltion({
-                pickupLocaltion_name :  req.body.pickUp,
-            });
-            const dropLocal = await dropLocalNew.save();
-            const pickUp = await pickLocalNew.save();
-            if (dropLocal || pickUp){
+            let dropLocal =await DropofLocaltion.findOne({dropofLocaltion_name:req.body.dropOf})
+            let pickLocal =await PickupLocaltion.findOne({pickupLocaltion_name:req.body.pickUp})
+            if (!dropLocal && !pickLocal){
+                const dropLocalNew = new DropofLocaltion({
+                    dropofLocaltion_name : req.body.dropOf,
+                });
+                const pickLocalNew = new PickupLocaltion({
+                    pickupLocaltion_name :  req.body.pickUp,
+                });
+                await pickLocalNew.save();
+                await dropLocalNew.save();
                 res.redirect('/adm/listlocals')
             }else {
                 res.render('notfound')

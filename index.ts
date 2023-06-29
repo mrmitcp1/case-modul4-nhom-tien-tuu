@@ -38,13 +38,16 @@ app.use(livereload());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static('assets'));
+app.use(authRouter);
+
 app.use((req: any, res: any, next: any) => {
     if (req.isAuthenticated()) {
         res.locals.userLogin = req.user;
+        next();
+    }else {
+        res.redirect('/login')
     }
-    next();
 });
-app.use(authRouter);
 
 app.use("/car", rentalRouters);
 app.use(logoutRouter);

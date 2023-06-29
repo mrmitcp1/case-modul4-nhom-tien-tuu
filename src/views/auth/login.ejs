@@ -106,6 +106,9 @@
                   name="password"
                   placeholder="Your Password"
                 />
+                <% if(failureMessage){ %>
+                  <h3>Invalid username or password</h3>
+               <% } %>
                 <div class="d-flex justify-content-between mt-4">
                   <div class="form-check">
                     <input
