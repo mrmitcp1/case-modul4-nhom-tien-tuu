@@ -44,8 +44,9 @@ app.use((req: any, res: any, next: any) => {
     if (req.isAuthenticated()) {
         res.locals.userLogin = req.user;
         next();
+    }else {
+        res.redirect('/login')
     }
-    res.redirect('/login')
 });
 
 app.use("/car", rentalRouters);
