@@ -5,8 +5,9 @@ class AuthController {
     static getFormLogin(req: any, res: any): any {
         if (req.isAuthenticated()) {
         return res.redirect('/index') 
-      }
-        res.render('auth/login')
+        }
+        let failureMessage = req.session.messages ;
+        res.render('auth/login',{failureMessage:failureMessage})
     }
 
     static getFormRegister(req: any, res: any): any {
