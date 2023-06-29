@@ -67,15 +67,15 @@ class RentalControllers {
   static async bookOrderDetail(req: any, res: any) {
     try {
       let { nameCarSelect, dropofLocation, datePickup, dateDropof } = req.body;
-      const pickupDate: Date = new Date(datePickup);
-      const dropoffDate: Date = new Date(dateDropof);
+      const pickupDate: any = new Date(datePickup);
+      const dropoffDate: any = new Date(dateDropof);
       const dataCar = await Car.findOne({ _id: req.params.id }).populate({
         path: "pickup",
         select: "pickupLocaltion_name",
       });
       // @ts-ignore
       const numberOfDays: number = Math.ceil(
-        (dropoffDate - pickupDate) / (1000 * 60 * 60 * 24)
+        (dropoffDate - pickupDate ) / (1000 * 60 * 60 * 24)
       );
       let totalCost = numberOfDays * dataCar.car_rentalPrice;
       const dataPickupLocation = await PickupLocaltion.findOne({
