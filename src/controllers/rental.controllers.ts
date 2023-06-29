@@ -18,22 +18,11 @@ const storage = multer.diskStorage({
 class RentalControllers {
   static async getFormBookCar(req: any, res: any) {
     try {
-      const dataCar = await Car.findOne({ _id: req.params.id }).populate({
+      const dataCar = await Car.findOne({ _id: req.params.id }).populate([{
         path: "pickup",
         select: "pickupLocaltion_name",
-      });
-      const dropLocation = await DropofLocaltion.find();
-      let drop = [];
-      dropLocation.forEach((item) => {
-        drop.push(item.dropofLocaltion_name);
-      });
-      let dropLocationOfCar = [...new Set(drop)];
-      const pickLocation = await PickupLocaltion.find();
-      let pick = [];
-      pickLocation.forEach((item) => {
-        pick.push(item.pickupLocaltion_name);
-      });
-      let pickLocationOfCar = [...new Set(pick)];
+      },{ path: "drop",
+        select: "dropofLocaltion_name",}]);
       let role;
       let user;
       if (req.user) {
@@ -53,8 +42,8 @@ class RentalControllers {
       const rentalDetail = await RentalDetail.find({ car_id: dataCar.id });
       res.render("bookingCar", {
         car: dataCar,
-        pickLocations: pickLocationOfCar,
-        dropLocations: dropLocationOfCar,
+        pickLocations: dataCar.pickup,
+        dropLocations: dataCar.drop,
         userState: role,
         userGreet: user,
         rentalDetail: rentalDetail,

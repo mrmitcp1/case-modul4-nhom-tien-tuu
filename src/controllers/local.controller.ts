@@ -5,10 +5,8 @@ import {Car} from "../schemas/car.schema";
 class LocalController {
     static async createLocals(req,res){
         try {
-            console.log(req.body.dropOf)
             let dropLocal =await DropofLocaltion.findOne({dropofLocaltion_name:req.body.dropOf})
             let pickLocal =await PickupLocaltion.findOne({pickupLocaltion_name:req.body.pickUp})
-            console.log(dropLocal)
             if (!dropLocal && !pickLocal){
                 const dropLocalNew = new DropofLocaltion({
                     dropofLocaltion_name : req.body.dropOf,
