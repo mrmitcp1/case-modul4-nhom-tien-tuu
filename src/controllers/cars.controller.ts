@@ -123,15 +123,11 @@ class CarController {
       for (let i = 0; i < arrImg.length; i++) {
         images.push(arrImg[i]);
       }
-      const dropNew = new DropofLocaltion({
-        dropofLocaltion_name: req.body.dropofLocaltion_name,
-      });
-      const pickNew = new PickupLocaltion({
-        pickupLocaltion_name: req.body.pickupLocaltion_name,
-      });
+      const dropOf =await DropofLocaltion.findOne({dropofLocaltion_name:req.body.dropofLocaltion_name})
+      const pickUp =await PickupLocaltion.findOne({pickupLocaltion_name:req.body.pickupLocaltion_name})
       const car = new Car({
-        drop: dropNew,
-        pickup: pickNew,
+        drop: dropOf,
+        pickup: pickUp,
         car_brand: req.body.brand,
         car_model: req.body.model,
         car_type: req.body.type,
@@ -146,14 +142,7 @@ class CarController {
         car_des: req.body.des,
       });
       const carItem = await car.save();
-      const dropLocal = await dropNew.save();
-      const pickLocal = await pickNew.save();
-      let [drop, pickup, cars] = await Promise.all([
-        dropLocal,
-        pickLocal,
-        carItem,
-      ]);
-      if (cars) {
+      if (carItem) {
         res.redirect("/adm/list");
       }
     } catch (err) {
