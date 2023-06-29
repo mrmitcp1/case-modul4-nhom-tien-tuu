@@ -9,7 +9,7 @@ class LocalController {
             let dropLocal =await DropofLocaltion.findOne({dropofLocaltion_name:req.body.dropOf})
             let pickLocal =await PickupLocaltion.findOne({pickupLocaltion_name:req.body.pickUp})
             console.log(dropLocal)
-            if (!dropLocal || !pickLocal){
+            if (!dropLocal && !pickLocal){
                 const dropLocalNew = new DropofLocaltion({
                     dropofLocaltion_name : req.body.dropOf,
                 });
