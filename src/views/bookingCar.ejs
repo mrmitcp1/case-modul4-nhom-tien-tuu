@@ -226,9 +226,7 @@
                         id="example-select"
                         name="pickupLocation"
                       >
-                        <% pickLocations.forEach(location => { %>
-                        <option><%= location %></option>
-                        <% }) %>
+                        <option><%= pickLocations.pickupLocaltion_name %></option>
                       </select>
                     </div>
                   </div>
@@ -242,9 +240,7 @@
                         id="example-select"
                         name="dropofLocation"
                       >
-                        <% dropLocations.forEach(location => { %>
-                        <option><%= location %></option>
-                        <% }) %>
+                        <option><%= dropLocations.dropofLocaltion_name %></option>
                       </select>
                     </div>
                   </div>
