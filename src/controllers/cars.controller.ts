@@ -58,7 +58,6 @@ class CarController {
     const car: any = await Car.findById({ _id: req.params.id }).populate(
       "car_comment.postedBy"
     );
-
     let role;
     let user;
     if (req.user) {
