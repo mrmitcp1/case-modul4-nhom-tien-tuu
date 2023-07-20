@@ -175,7 +175,8 @@
               <div class="blog_1rdt3i row">
                 <div class="">
                   <div class="blog_1rdt3il">
-                    <% data.car_comment.forEach((item) => { %>
+                    <% data.car_comment.forEach((item) => {
+                       if (item.postedBy) {%>
                     <h4 style="display: inline-block; margin-right: 10px">
                       <%= item.postedBy.user_name %>
                     </h4>
@@ -207,7 +208,7 @@
                     <p class="mb-0 font_14"><%= item.text %></p>
                     <hr />
 
-                    <% }) %>
+                    <% }}) %>
                   </div>
                 </div>
               </div>

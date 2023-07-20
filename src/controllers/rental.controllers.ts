@@ -80,11 +80,10 @@ class RentalControllers {
         dateDrop: dateDropof,
         total_cost: totalCost,
       });
-
       dataCar.car_availability = "unavailable";
       dataCar.car_model = nameCarSelect;
       dataDropLocation.dropofLocaltion_name = dropofLocation;
-
+      console.log(newRentalDetail._id)
       const p1 = dataCar.save();
       const p2 = dataDropLocation.save();
       const p3 = dataPickupLocation.save();
@@ -96,10 +95,18 @@ class RentalControllers {
         pickupLocation: dataPickupLocations,
         dropLocation: dataDropLocations,
         rentalDetail: newRentalDetail,
+        idBooking : newRentalDetail._id,
       });
     } catch (err) {
       res.render("notfound");
     }
+  }
+
+  static async cancelBill(req: any, res: any) {
+    const billId = req.params.id;
+    console.log(billId)
+    const bill = await RentalDetail.findByIdAndDelete({ _id: billId });
+    res.redirect('/cars/list');
   }
 }
 export default RentalControllers;
