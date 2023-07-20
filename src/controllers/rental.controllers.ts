@@ -5,6 +5,7 @@ import { DropofLocaltion } from "../schemas/dropoflocaltion.schema";
 import { RentalDetail } from "../schemas/rentaldetail.schema";
 import { PickupLocaltion } from "../schemas/pickuplocaltion.schema";
 import { User } from "../schemas/user.schema";
+const stripe = require('stripe')('sk_test_51NVsLnHt7JaGigtxugiIQz6qLxhNpt7pu4tWSPgbwItO3gHLDCSKxE0PaY3RMh2SZ3gmWT8G46nWC9vrwHgs6eKZ00gqpGP69A');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -83,7 +84,6 @@ class RentalControllers {
       dataCar.car_availability = "unavailable";
       dataCar.car_model = nameCarSelect;
       dataDropLocation.dropofLocaltion_name = dropofLocation;
-      console.log(newRentalDetail._id)
       const p1 = dataCar.save();
       const p2 = dataDropLocation.save();
       const p3 = dataPickupLocation.save();
@@ -108,5 +108,37 @@ class RentalControllers {
     const bill = await RentalDetail.findByIdAndDelete({ _id: billId });
     res.redirect('/cars/list');
   }
+  static async payment(req: any, res: any){
+    try {
+      const session = await stripe.checkout.sessions.create({
+        line_items: [
+          {
+            //price_1NVtCIHt7JaGigtxzd2c1gBF
+            price: 'price_1NVtCIHt7JaGigtxzd2c1gBF',
+            quantity: 1,
+          },
+        ],
+        mode: 'payment',
+        // success_url: `/login`,
+        // cancel_url: ` http://localhost:3333/`,
+        success_url: `http://localhost:3333/car/success`,
+        cancel_url: `http://localhost:3333/car/cancel`,
+
+      })
+      res.redirect(session.url);
+    } catch (e){
+      console.log(e.message)
+    }
+  }
+
+  static async showSuccess(req:any, res:any){
+    res.render("success")
+  }
+  static async showErorr(req:any, res:any){
+    res.render("cancel")
+  }
+
 }
+
+
 export default RentalControllers;
