@@ -104,7 +104,6 @@ class RentalControllers {
 
   static async cancelBill(req: any, res: any) {
     const billId = req.params.id;
-    console.log(billId)
     const bill = await RentalDetail.findByIdAndDelete({ _id: billId });
     res.redirect('/cars/list');
   }
@@ -113,16 +112,13 @@ class RentalControllers {
       const session = await stripe.checkout.sessions.create({
         line_items: [
           {
-            //price_1NVtCIHt7JaGigtxzd2c1gBF
             price: 'price_1NVtCIHt7JaGigtxzd2c1gBF',
             quantity: 1,
           },
         ],
         mode: 'payment',
-        // success_url: `/login`,
-        // cancel_url: ` http://localhost:3333/`,
         success_url: `http://localhost:3333/car/success`,
-        cancel_url: `http://localhost:3333/car/cancel`,
+        cancel_url: `http://localhost:3333/cars/list`,
 
       })
       res.redirect(session.url);
